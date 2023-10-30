@@ -1,5 +1,6 @@
 html {
     background-color: #fdf1d3;
+    text-align: center;
 }
 
 ul {
@@ -10,6 +11,10 @@ li {
     display: inline;
     padding: 0px 10px 0px 0px ;
     color: blue;
+    text-decoration: none;
+}
+a {
+    text-decoration: none;
 }
 
 a:hover {
