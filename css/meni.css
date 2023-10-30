@@ -1,0 +1,17 @@
+html {
+    background-color: #fdf1d3;
+}
+
+ul {
+    padding :auto;
+}
+
+li {
+    display: inline;
+    padding: 0px 10px 0px 0px ;
+    color: blue;
+}
+
+a:hover {
+    color: #ff9900;
+}
