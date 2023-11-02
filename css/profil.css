@@ -1,0 +1,29 @@
+body {
+    background-color: #fdf1d3;
+    width: 100%;
+}
+img {
+    width: 20%;
+}
+.slika{
+    margin: 50px 15px;
+}
+
+table {
+    width: 100%;
+}
+
+td {
+    padding: 10px ;
+    text-align: left;
+}
+
+td.gore .lijevo, td.dolje .lijevo{
+    text-align: left;
+}
+
+td.gore .desno, td.dolje .desno{
+    text-align: right;
+}
+
+
