@@ -22,18 +22,22 @@ img {
     text-align: center;
 }
 
-.nekretnina {
+.nekretninaStan {
     background-color: white;
     padding: 20px;
     text-align: left;
 }
 
-#kuca .nekretnina {
+.nekretninaKuca {
     background-color: powderblue;
+    padding: 20px;
+    text-align: left;
 }
 
-#pp .nekretnina {
+.nekretninaPP {
     background-color: green;
+    padding: 20px;
+    text-align: left;
 }
 
 .podaci {
@@ -48,6 +52,7 @@ button {
     display: block;
     margin: 0 auto;
     width: 80px;
+    font-style: none;
 }
 
 
