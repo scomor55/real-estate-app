@@ -11,6 +11,7 @@ img {
 
 table {
     width: 100%;
+   /* border-collapse: collapse;*/
 }
 
 td {
@@ -18,12 +19,16 @@ td {
     text-align: left;
 }
 
+.desno {
+    margin-right: 300px;
+}
+
 td.gore .lijevo, td.dolje .lijevo{
     text-align: left;
 }
 
 td.gore .desno, td.dolje .desno{
-    text-align: right;
+    text-align: left;
 }
 
 
