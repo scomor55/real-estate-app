@@ -2,6 +2,17 @@ body {
     background-color: #fdf1d3;
     width: 100%;
 }
+
+input {
+    height: 30px;
+    width: 130px;
+    border: none;
+}
+
+input::placeholder {
+    color: #C0BFBF;
+}
+
 img {
     width: 20%;
 }
@@ -11,7 +22,6 @@ img {
 
 table {
     width: 100%;
-   /* border-collapse: collapse;*/
 }
 
 td {
