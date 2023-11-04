@@ -22,22 +22,22 @@ img {
     text-align: center;
 }
 
-.nekretninaStan {
-    background-color: white;
+.nekretninaKuca, .nekretninaStan, .nekretninaPP {
     padding: 20px;
     text-align: left;
+    width: 300px;
+}
+
+.nekretninaStan {
+    background-color: white;
 }
 
 .nekretninaKuca {
     background-color: powderblue;
-    padding: 20px;
-    text-align: left;
 }
 
 .nekretninaPP {
     background-color: green;
-    padding: 20px;
-    text-align: left;
 }
 
 .podaci {
