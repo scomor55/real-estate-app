@@ -3,6 +3,11 @@ body {
     margin: 0px 50px;
 }
 
+iframe {
+    border: 0;
+    width: 100%;
+}
+
 p {
     padding: 10px 0px;
 }
