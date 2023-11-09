@@ -3,6 +3,11 @@ body {
     width: 100%;
 }
 
+iframe {
+    border: 0;
+    width: 100%;
+}
+
 input {
     height: 30px;
     width: 130px;
