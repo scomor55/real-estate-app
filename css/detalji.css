@@ -1,12 +1,26 @@
 body {
     background-color: #fdf1d3;
-    margin: 0px 50px;
+    margin: 0;
+    padding: 0;
 }
 
 iframe {
     border: 0;
     width: 100%;
 }
+
+#osnovno {
+    margin: 0px 50px;
+}
+
+#detalji {
+    margin: 0px 50px;
+}
+
+#upiti {
+    margin: 0px 50px;
+}
+
 
 p {
     padding: 10px 0px;
@@ -39,8 +53,6 @@ td.gore .desno, td.dolje .desno{
     justify-content: space-between;
     margin: 5px 0;
 }
-
-
 
 .upit {
     background-color: white;

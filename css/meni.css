@@ -22,10 +22,10 @@ a {
     text-decoration: none;
 }
 
-a:hover {
-    color: #ff9900;
-}
-
 a:visited{
     color: blue;
+}
+
+a:hover {
+    color: #ff9900;
 }

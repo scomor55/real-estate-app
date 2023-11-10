@@ -1,6 +1,8 @@
 body {
     background-color: #fdf1d3;
     width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 iframe {
