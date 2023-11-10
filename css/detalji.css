@@ -9,18 +9,9 @@ iframe {
     width: 100%;
 }
 
-#osnovno {
+#osnovno, #detalji, #upiti {
     margin: 0px 50px;
 }
-
-#detalji {
-    margin: 0px 50px;
-}
-
-#upiti {
-    margin: 0px 50px;
-}
-
 
 p {
     padding: 10px 0px;
