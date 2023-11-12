@@ -1,0 +1,2 @@
+Za validaciju html datoteka sam koristio validator.w3.org, a za validaciju css-a sam koristio jigsaw.w3.org.
+Nije bilo grešaka.
