@@ -3,8 +3,11 @@ function spojiNekretnine(divReferenca, instancaModula, tip_nekretnine) {
 
     let filtriraneNekretnine = instancaModula.filtrirajNekretnine({ tip_nekretnine: tip_nekretnine });
 
-    let gridContainer = divReferenca.querySelector(".grid-container");
+    //let gridContainer = divReferenca.querySelector(".grid-container");
     // iscrtavanje elemenata u divReferenca element
+
+    let gridContainer = document.createElement("div");
+    gridContainer.className = "grid-container";
 
     for(let nekretnina of filtriraneNekretnine){
         let nekretninaDiv = document.createElement("div");
@@ -39,9 +42,11 @@ function spojiNekretnine(divReferenca, instancaModula, tip_nekretnine) {
         nekretninaDiv.appendChild(podaciDiv);
 
         gridContainer.appendChild(nekretninaDiv);
-      /*  divReferenca.appendChild(nekretninaDiv); */
+       // divReferenca.appendChild(nekretninaDiv); 
 
     }
+
+        divReferenca.appendChild(gridContainer);
 
 }
 

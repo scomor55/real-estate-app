@@ -11,7 +11,22 @@ let SpisakNekretnina = function () {
     }
 
     let filtrirajNekretnine = function (kriterij) {
-        if(!kriterij) {
+        if(!kriterij || Object.keys(kriterij).length === 0) {
+            return listaNekretnina;
+        }
+
+        let imaAtribut = false;
+
+    for (let key in kriterij) {
+        if (key === "id" || key === "tip_nekretnine" || key === "naziv" || key === "kvadratura" || key === "cijena" ||
+            key === "tip_grijanja" || key === "lokacija" ||key === "godina_izgradnje" || key === "datum_objave" || key === "opis" ||key === "upiti"
+    ) {
+        imaAtribut = true;
+        break;
+    }
+        }
+
+        if (!imaAtribut) {
             return listaNekretnina;
         }
 
@@ -25,17 +40,18 @@ let SpisakNekretnina = function () {
             if(nekretnina.kvadratura < kriterij.min_kvadratura){
                 continue;
             }
-            if(nekretnina.kvadratura > kriterij.max_kvadratura){
+            if(nekretnina.kvadratura > kriterij.max_kvadratura ){
                 continue;
             }
             if(nekretnina.cijena < kriterij.min_cijena){
                 continue;
             }
-            if(nekretnina.cijena > kriterij.max_cijena){
+            if(nekretnina.cijena > kriterij.max_cijena ){
                 continue;
             }
             filtriraneNekretnine.push(nekretnina);
         }
+
         return filtriraneNekretnine;
     }
 
