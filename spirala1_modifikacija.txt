@@ -1,2 +1,0 @@
-Za ovu modifikaciju koristio sam grid layout. Div elementi slika i detalji su sada unutar novog diva cija je klasa grid-container. U css-u sam koristio media query da postavim karakteristike stranice za uređaje
-čija širina ekrana je jednaka ili prelazi 500px. Isto tako napravljene su male izmjene u css dokumentu kako bi se uskladio sa novim zahtjevima.
