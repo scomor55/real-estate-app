@@ -42,7 +42,6 @@ function spojiNekretnine(divReferenca, instancaModula, tip_nekretnine) {
         nekretninaDiv.appendChild(podaciDiv);
 
         gridContainer.appendChild(nekretninaDiv);
-       // divReferenca.appendChild(nekretninaDiv); 
 
     }
 
@@ -50,7 +49,7 @@ function spojiNekretnine(divReferenca, instancaModula, tip_nekretnine) {
 
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+
 
 const divStan = document.getElementById("stan");
 const divKuca = document.getElementById("kuca");
@@ -356,5 +355,3 @@ nekretnine.init(listaNekretnina, listaKorisnika);
 spojiNekretnine(divStan, nekretnine, "Stan");
 spojiNekretnine(divKuca, nekretnine, "Kuća");
 spojiNekretnine(divPp, nekretnine, "Poslovni prostor");
-
-});
