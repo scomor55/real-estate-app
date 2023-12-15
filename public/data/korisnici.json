@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "ime": "Neko1",
+    "prezime": "Nekić1",
+    "username": "username1",
+    "password": "$2b$10$H/tGxAklLjgjj1eK2GYZ3.FfsohKim420uEGY3MkjoAe5cSmQU74C",
+    "slika": "slika"
+  },
+  {
+    "id": 2,
+    "ime": "Svako2",
+    "prezime": "Svakić2",
+    "username": "username",
+    "password": "$2b$10$kEwkJRtnBPdvDpzXWxO0beCxNbfYmwsIpKj2/.GHNlxbznH03nKoa",
+    "slika": "slika"
+  }
+]
