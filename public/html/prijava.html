@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ba">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width"/>
+        <link href="../css/prijava.css" rel="stylesheet">
+        <title>Prijava</title>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const forma = document.querySelector('form'); 
+                const meniElement = document.getElementById('meni');
+
+                forma.addEventListener('submit', function (event) {
+                    event.preventDefault();
+    
+                    const username = document.getElementById('username').value; 
+                    const password = document.getElementById('password').value;     
+                    const ajax = new XMLHttpRequest();
+                    ajax.onreadystatechange = function () {
+                        if (ajax.readyState == 4) {
+                            if (ajax.status == 200) {
+                                const data = JSON.parse(ajax.responseText);
+    
+                                alert(data.poruka);
+                                window.location.href = '/nekretnine.html';
+                          
+                            } else {
+                                alert('Neuspješna prijava');
+                            }
+                        }
+                    };
+    
+                    ajax.open("POST", "/login", true);
+                    ajax.setRequestHeader("Content-Type", "application/json");
+                    ajax.send(JSON.stringify({ username, password }));
+                });
+            });
+        </script>
+
+    </head>
+    <body>
+        <iframe src="meni.html" height="50"></iframe>
+        <form action="/login" method="POST">
+            <label for="username">Korisničko ime:</label>
+            <input type="text" id="username" name="username" required>
+    
+            <label for="password">Lozinka:</label>
+            <input type="password" id="password" name="password" required>
+    
+            <button type="submit" >Prijava</button>
+        </form>
+    </body>
+
+    
+</html>

@@ -5,9 +5,8 @@ let SpisakNekretnina = function () {
 
 
     //implementacija metoda
-    let init = function (nekretnine, korisnici) {
+    let init = function (nekretnine) {
          listaNekretnina = nekretnine;
-         listaKorisnika = korisnici;
     }
 
     let filtrirajNekretnine = function (kriterij) {

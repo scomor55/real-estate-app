@@ -55,301 +55,49 @@ const divStan = document.getElementById("stan");
 const divKuca = document.getElementById("kuca");
 const divPp = document.getElementById("pp");
 
-const listaNekretnina = [{
-    id: 1,
-    tip_nekretnine: "Stan",
-    naziv: "Useljiv stan Sarajevo",
-    kvadratura: 58,
-    cijena: 232000,
-    tip_grijanja: "plin",
-    lokacija: "Novo Sarajevo",
-    godina_izgradnje: 2019,
-    datum_objave: "01.10.2023.",
-    opis: "Sociis natoque penatibus.",
-    slika: "../slike/stan.jpg",
-    upiti: [{
-        korisnik_id: 1,
-        tekst_upita: "Nullam eu pede mollis pretium."
-    },
-    {
-        korisnik_id: 2,
-        tekst_upita: "Phasellus viverra nulla."
-    }]
-},
-{
-    id: 2,
-    tip_nekretnine: "Poslovni prostor",
-    naziv: "Mali poslovni prostor",
-    kvadratura: 20,
-    cijena: 70000,
-    tip_grijanja: "struja",
-    lokacija: "Centar",
-    godina_izgradnje: 2005,
-    datum_objave: "20.08.2023.",
-    opis: "Magnis dis parturient montes.",
-    slika: "../slike/poslovni.png",
-    upiti: [{
-        korisnik_id: 2,
-        tekst_upita: "Integer tincidunt."
-    }
-    ]
-},
-{
-    id: 3,
-    tip_nekretnine: "Stan",
-    naziv: "Useljiv stan Sarajevo",
-    kvadratura: 58,
-    cijena: 232000,
-    tip_grijanja: "plin",
-    lokacija: "Novo Sarajevo",
-    godina_izgradnje: 2019,
-    datum_objave: "01.10.2023.",
-    opis: "Sociis natoque penatibus.",
-    slika: "../slike/stan.jpg",
-    upiti: [{
-        korisnik_id: 1,
-        tekst_upita: "Nullam eu pede mollis pretium."
-    },
-    {
-        korisnik_id: 2,
-        tekst_upita: "Phasellus viverra nulla."
-    }]
-},{
-    id: 4,
-    tip_nekretnine: "Stan",
-    naziv: "Useljiv stan Sarajevo",
-    kvadratura: 58,
-    cijena: 232000,
-    tip_grijanja: "plin",
-    lokacija: "Novo Sarajevo",
-    godina_izgradnje: 2019,
-    datum_objave: "01.10.2023.",
-    opis: "Sociis natoque penatibus.",
-    slika: "../slike/stan.jpg",
-    upiti: [{
-        korisnik_id: 1,
-        tekst_upita: "Nullam eu pede mollis pretium."
-    },
-    {
-        korisnik_id: 2,
-        tekst_upita: "Phasellus viverra nulla."
-    }]
-},{
-    id: 5,
-    tip_nekretnine: "Stan",
-    naziv: "Useljiv stan Sarajevo",
-    kvadratura: 58,
-    cijena: 232000,
-    tip_grijanja: "plin",
-    lokacija: "Novo Sarajevo",
-    godina_izgradnje: 2019,
-    datum_objave: "01.10.2023.",
-    opis: "Sociis natoque penatibus.",
-    slika: "../slike/stan.jpg",
-    upiti: [{
-        korisnik_id: 1,
-        tekst_upita: "Nullam eu pede mollis pretium."
-    },
-    {
-        korisnik_id: 2,
-        tekst_upita: "Phasellus viverra nulla."
-    }]
-},{
-    id: 6,
-    tip_nekretnine: "Stan",
-    naziv: "Useljiv stan Sarajevo",
-    kvadratura: 58,
-    cijena: 232000,
-    tip_grijanja: "plin",
-    lokacija: "Novo Sarajevo",
-    godina_izgradnje: 2019,
-    datum_objave: "01.10.2023.",
-    opis: "Sociis natoque penatibus.",
-    slika: "../slike/stan.jpg",
-    upiti: [{
-        korisnik_id: 1,
-        tekst_upita: "Nullam eu pede mollis pretium."
-    },
-    {
-        korisnik_id: 2,
-        tekst_upita: "Phasellus viverra nulla."
-    }]
-},
-{
-    id: 7,
-    tip_nekretnine: "Poslovni prostor",
-    naziv: "Mali poslovni prostor",
-    kvadratura: 20,
-    cijena: 70000,
-    tip_grijanja: "struja",
-    lokacija: "Centar",
-    godina_izgradnje: 2005,
-    datum_objave: "20.08.2023.",
-    opis: "Magnis dis parturient montes.",
-    slika: "../slike/poslovni.png",
-    upiti: [{
-        korisnik_id: 2,
-        tekst_upita: "Integer tincidunt."
-    }
-    ]
-},
-{
-    id: 8,
-    tip_nekretnine: "Poslovni prostor",
-    naziv: "Mali poslovni prostor",
-    kvadratura: 20,
-    cijena: 70000,
-    tip_grijanja: "struja",
-    lokacija: "Centar",
-    godina_izgradnje: 2005,
-    datum_objave: "20.08.2023.",
-    opis: "Magnis dis parturient montes.",
-    slika: "../slike/poslovni.png",
-    upiti: [{
-        korisnik_id: 2,
-        tekst_upita: "Integer tincidunt."
-    }
-    ]
-},
-{
-    id: 9,
-    tip_nekretnine: "Poslovni prostor",
-    naziv: "Mali poslovni prostor",
-    kvadratura: 20,
-    cijena: 70000,
-    tip_grijanja: "struja",
-    lokacija: "Centar",
-    godina_izgradnje: 2005,
-    datum_objave: "20.08.2023.",
-    opis: "Magnis dis parturient montes.",
-    slika: "../slike/poslovni.png",
-    upiti: [{
-        korisnik_id: 2,
-        tekst_upita: "Integer tincidunt."
-    }
-    ]
-},
-{
-    id: 10,
-    tip_nekretnine: "Poslovni prostor",
-    naziv: "Mali poslovni prostor",
-    kvadratura: 20,
-    cijena: 70000,
-    tip_grijanja: "struja",
-    lokacija: "Centar",
-    godina_izgradnje: 2005,
-    datum_objave: "20.08.2023.",
-    opis: "Magnis dis parturient montes.",
-    slika: "../slike/poslovni.png",
-    upiti: [{
-        korisnik_id: 2,
-        tekst_upita: "Integer tincidunt."
-    }
-    ]
-},{
-    id: 11,
-    tip_nekretnine: "Kuća",
-    naziv: "Kuća sa dvorištem",
-    kvadratura: 20,
-    cijena: 220000,
-    tip_grijanja: "struja",
-    lokacija: "Centar",
-    godina_izgradnje: 2005,
-    datum_objave: "20.08.2023.",
-    opis: "Magnis dis parturient montes.",
-    slika: "../slike/kuca.jpg",
-    upiti: [{
-        korisnik_id: 2,
-        tekst_upita: "Integer tincidunt."
-    }
-    ]
-},{
-    id: 12,
-    tip_nekretnine: "Kuća",
-    naziv: "Kuća sa dvorištem",
-    kvadratura: 20,
-    cijena: 220000,
-    tip_grijanja: "struja",
-    lokacija: "Centar",
-    godina_izgradnje: 2005,
-    datum_objave: "20.08.2023.",
-    opis: "Magnis dis parturient montes.",
-    slika: "../slike/kuca.jpg",
-    upiti: [{
-        korisnik_id: 2,
-        tekst_upita: "Integer tincidunt."
-    }
-    ]
-},{
-    id: 13,
-    tip_nekretnine: "Kuća",
-    naziv: "Kuća sa dvorištem",
-    kvadratura: 20,
-    cijena: 220000,
-    tip_grijanja: "struja",
-    lokacija: "Centar",
-    godina_izgradnje: 2005,
-    datum_objave: "20.08.2023.",
-    opis: "Magnis dis parturient montes.",
-    slika: "../slike/kuca.jpg",
-    upiti: [{
-        korisnik_id: 2,
-        tekst_upita: "Integer tincidunt."
-    }
-    ]
-},{
-    id: 14,
-    tip_nekretnine: "Kuća",
-    naziv: "Kuća sa dvorištem",
-    kvadratura: 20,
-    cijena: 220000,
-    tip_grijanja: "struja",
-    lokacija: "Centar",
-    godina_izgradnje: 2005,
-    datum_objave: "20.08.2023.",
-    opis: "Magnis dis parturient montes.",
-    slika: "../slike/kuca.jpg",
-    upiti: [{
-        korisnik_id: 2,
-        tekst_upita: "Integer tincidunt."
-    }
-    ]
-},{
-    id: 15,
-    tip_nekretnine: "Kuća",
-    naziv: "Kuća sa dvorištem",
-    kvadratura: 20,
-    cijena: 220000,
-    tip_grijanja: "struja",
-    lokacija: "Centar",
-    godina_izgradnje: 2005,
-    datum_objave: "20.08.2023.",
-    opis: "Magnis dis parturient montes.",
-    slika: "../slike/kuca.jpg",
-    upiti: [{
-        korisnik_id: 2,
-        tekst_upita: "Integer tincidunt."
-    }
-    ]
-}
-]
 
-const listaKorisnika = [{
-    id: 1,
-    ime: "Neko",
-    prezime: "Nekic",
-    username: "username1",
-},
-{
-    id: 2,
-    ime: "Neko2",
-    prezime: "Nekic2",
-    username: "username2",
-}]
+
+
+const getNekretnineAsync = () => {
+    return new Promise((resolve, reject) => {
+        PoziviAjax.getNekretnine((err, data) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(data);
+            }
+        });
+    });
+};
+
+let listaNekretnina;
+getNekretnineAsync()
+    .then((data) => {
+        listaNekretnina = data;
+        console.log("Podaci uspješno dohvaćeni:", listaNekretnina);
+    })
+    .catch((error) => {
+        console.log("Greška pri dohvaćanju podataka:", error);
+    });
+
+console.log(listaNekretnina);
+
+//    PoziviAjax.getNekretnine(function(error, nekretnine, status) {
+//        if (error) {
+//            console.error('Greška prilikom dobavljanja nekretnina sa servera:', error);
+//        } else {
+//            if (status === 200) {
+//                // U redu, podaci su uspješno dohvaćeni
+//                listaNekretnina = nekretnine;
+//            } else {
+//                console.error('Greška prilikom dohvaćanja nekretnina. Statusni kod:', status);
+//            }
+//        }
+//    });
 
 //instanciranje modula
 let nekretnine = SpisakNekretnina();
-nekretnine.init(listaNekretnina, listaKorisnika);
+nekretnine.init(listaNekretnina);
 
 //pozivanje funkcije
 spojiNekretnine(divStan, nekretnine, "Stan");

@@ -2,10 +2,14 @@ body {
     background-color: #fdf1d3;
     margin: 0;
     padding: 0;
-    display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+   /* height: 100vh;*/
+}
+
+iframe {
+    border: 0;
+    width: 100%;
 }
 
 form {
@@ -13,6 +17,7 @@ form {
     flex-direction: column;
     align-items: center;
     width: 300px;
+    margin: 50px 0px 0px 50px;
 }
 
 label {

@@ -6,8 +6,12 @@ const path = require('path');
 const bcrypt = require('bcrypt');
 
 const app = express();
-
 app.use(express.static("public"));
+app.use(express.static("public/html"));
+
+/*app.use(express.static(__dirname + 'public/html'))*/
+
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
