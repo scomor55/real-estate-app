@@ -223,13 +223,8 @@ app.post('/login',function(req,res){
        if(err){
             return res.status(500).json({greska : 'Interna greska servera'});
         }
-        try{
             const nekretnine = JSON.parse(data);
-
             return res.status(200).json(nekretnine);
-        }catch(err){
-            return res.status(500).json({greska: 'Interna greska servera'});
-        }
     });
  });
 
