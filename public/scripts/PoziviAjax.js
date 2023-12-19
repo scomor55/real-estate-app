@@ -13,8 +13,9 @@ const PoziviAjax = (() => {
         ajax.onreadystatechange = function(){
             if(ajax.readyState == 4 && ajax.status == 200){
                 fnCallback(null, JSON.parse(ajax.responseText));
-            }else {
-                fnCallback({status: ajax.status, statusText : ajax.statusText}, null);
+            }
+            if(ajax.readyState == 4 && ajax.status == 404) {
+                fnCallback(ajax.responseText, null);
             }
         };
         ajax.open('GET','/korisnik',true);
@@ -27,8 +28,9 @@ const PoziviAjax = (() => {
         ajax.onreadystatechange = function(){
             if(ajax.readyState == 4 && ajax.status == 200){
                 fnCallback(null, JSON.parse(ajax.responseText));
-            }else {
-                fnCallback({status: ajax.status, statusText : ajax.statusText}, null);
+            }
+            if(ajax.readyState == 4 && ajax.status == 404) {
+                fnCallback(ajax.responseText, null);
             }
         };
         ajax.open('PUT','/korisnik',true);
@@ -42,8 +44,9 @@ const PoziviAjax = (() => {
         ajax.onreadystatechange = function(){
             if(ajax.readyState == 4 && ajax.status == 200){
                 fnCallback(null, JSON.parse(ajax.responseText));
-            }else {
-                fnCallback({status: ajax.status, statusText : ajax.statusText}, null);
+            }
+            if(ajax.readyState == 4 && ajax.status == 404) {
+                fnCallback(ajax.responseText, null);
             }
         };
         ajax.open('POST','/upit',true);
@@ -54,11 +57,11 @@ const PoziviAjax = (() => {
     function impl_getNekretnine(fnCallback) {
         const ajax = new XMLHttpRequest();
         ajax.onreadystatechange = function(){
-            console.log("readyState: "+ajax.readyState);
             if(ajax.readyState == 4 && ajax.status == 200){
                 fnCallback(null, JSON.parse(ajax.responseText));
-            }else {
-                fnCallback({status: ajax.status, statusText : ajax.statusText}, null);
+            }
+            if(ajax.readyState == 4 && ajax.status == 404) {
+                fnCallback(ajax.responseText, null);
             }
         };
         ajax.open('GET','/nekretnine',true);
@@ -70,8 +73,9 @@ const PoziviAjax = (() => {
         ajax.onreadystatechange = function(){
             if(ajax.readyState == 4 && ajax.status == 200){
                 fnCallback(null, JSON.parse(ajax.responseText));
-            }else {
-                fnCallback({status: ajax.status, statusText : ajax.statusText}, null);
+            }
+            if(ajax.readyState == 4 && ajax.status == 404) {
+                fnCallback(ajax.responseText, null);
             }
         };
         ajax.open('POST','/login',true);
@@ -84,8 +88,9 @@ const PoziviAjax = (() => {
         ajax.onreadystatechange = function(){
             if(ajax.readyState == 4 && ajax.status == 200){
                 fnCallback(null, JSON.parse(ajax.responseText));
-            }else {
-                fnCallback({status: ajax.status, statusText : ajax.statusText}, null);
+            }
+            if(ajax.readyState == 4 && ajax.status == 404) {
+                fnCallback(ajax.responseText, null);
             }
         };
         ajax.open('POST','/logout',true);

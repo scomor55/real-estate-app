@@ -49,57 +49,22 @@ function spojiNekretnine(divReferenca, instancaModula, tip_nekretnine) {
 
 }
 
-
-
 const divStan = document.getElementById("stan");
 const divKuca = document.getElementById("kuca");
 const divPp = document.getElementById("pp");
 
 
+   PoziviAjax.getNekretnine(function(error, data) {
+        if (error) {
+            console.error('Greška prilikom dobavljanja nekretnina sa servera:', error);
+        } else {
+            listaNekretnina = data;
+            let nekretnine = SpisakNekretnina();
+            nekretnine.init(listaNekretnina);
 
-
-const getNekretnineAsync = () => {
-    return new Promise((resolve, reject) => {
-        PoziviAjax.getNekretnine((err, data) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(data);
-            }
-        });
-    });
-};
-
-let listaNekretnina;
-getNekretnineAsync()
-    .then((data) => {
-        listaNekretnina = data;
-        console.log("Podaci uspješno dohvaćeni:", listaNekretnina);
-    })
-    .catch((error) => {
-        console.log("Greška pri dohvaćanju podataka:", error);
+            spojiNekretnine(divStan, nekretnine, "Stan");
+            spojiNekretnine(divKuca, nekretnine, "Kuća");
+            spojiNekretnine(divPp, nekretnine, "Poslovni prostor");
+        }
     });
 
-console.log(listaNekretnina);
-
-//    PoziviAjax.getNekretnine(function(error, nekretnine, status) {
-//        if (error) {
-//            console.error('Greška prilikom dobavljanja nekretnina sa servera:', error);
-//        } else {
-//            if (status === 200) {
-//                // U redu, podaci su uspješno dohvaćeni
-//                listaNekretnina = nekretnine;
-//            } else {
-//                console.error('Greška prilikom dohvaćanja nekretnina. Statusni kod:', status);
-//            }
-//        }
-//    });
-
-//instanciranje modula
-let nekretnine = SpisakNekretnina();
-nekretnine.init(listaNekretnina);
-
-//pozivanje funkcije
-spojiNekretnine(divStan, nekretnine, "Stan");
-spojiNekretnine(divKuca, nekretnine, "Kuća");
-spojiNekretnine(divPp, nekretnine, "Poslovni prostor");
