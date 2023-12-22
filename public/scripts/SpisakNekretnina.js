@@ -18,7 +18,8 @@ let SpisakNekretnina = function () {
 
     for (let key in kriterij) {
         if (key === "id" || key === "tip_nekretnine" || key === "naziv" || key === "kvadratura" || key === "cijena" ||
-            key === "tip_grijanja" || key === "lokacija" ||key === "godina_izgradnje" || key === "datum_objave" || key === "opis" ||key === "upiti"
+            key === "tip_grijanja" || key === "lokacija" ||key === "godina_izgradnje" || key === "datum_objave" || key === "opis" ||key === "upiti" || 
+            key === "min_kvadratura" || key === "max_kvadratura" || key === "min_cijena" || key === "max_cijena"
     ) {
         imaAtribut = true;
         break;
@@ -33,21 +34,29 @@ let SpisakNekretnina = function () {
 
         for(let i= 0; i < listaNekretnina.length; i++){
             let nekretnina = listaNekretnina[i];
-            if(nekretnina.tip_nekretnine !== kriterij.tip_nekretnine){
+           // console.log("Bio sammm ovdjeeeee");
+
+            if(kriterij.tip_nekretnine && nekretnina.tip_nekretnine !== kriterij.tip_nekretnine){
+            //    console.log("Nije zadovoljen tip_nekretnine condition");
                 continue;
             }
-            if(nekretnina.kvadratura < kriterij.min_kvadratura){
+            if(kriterij.min_kvadratura && nekretnina.kvadratura < kriterij.min_kvadratura){
+            //    console.log("Nije zadovoljen maxkvadratura condition");
                 continue;
             }
-            if(nekretnina.kvadratura > kriterij.max_kvadratura ){
+            if(kriterij.max_kvadratura && nekretnina.kvadratura > kriterij.max_kvadratura ){
+            //    console.log("Nije zadovoljen minkvadratura condition");
                 continue;
             }
-            if(nekretnina.cijena < kriterij.min_cijena){
+            if(kriterij.min_cijena && nekretnina.cijena < kriterij.min_cijena){
+            //    console.log("Nije zadovoljen mincijena condition");
                 continue;
             }
-            if(nekretnina.cijena > kriterij.max_cijena ){
+            if(kriterij.max_cijena && nekretnina.cijena > kriterij.max_cijena ){
+              //  console.log("Nije zadovoljen maxcijena condition");
                 continue;
             }
+           // console.log("Filtriraaaaan sammm");
             filtriraneNekretnine.push(nekretnina);
         }
 
