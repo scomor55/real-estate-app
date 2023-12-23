@@ -21,10 +21,11 @@ function spojiNekretnine(divReferenca, instancaModula, kriterij) {
     gridContainer.className = "grid-container";
 
     for(let nekretnina of filtriraneNekretnine){
+      //  console.log(filtriraneNekretnine.length);
         let nekretninaDiv = document.createElement("div");
         
         nekretninaDiv.className="nekretnina";
-
+        
         let slika = document.createElement("img");
         slika.src = nekretnina.slika;
         slika.alt = nekretnina.naziv;
@@ -41,11 +42,22 @@ function spojiNekretnine(divReferenca, instancaModula, kriterij) {
         kvadraturaParagraf.textContent = "Kvadratura: " + nekretnina.kvadratura + " m²";
         podaciDiv.appendChild(kvadraturaParagraf);
 
+        let pretrageParagraf = document.createElement("p");
+        pretrageParagraf.className = "pretrage-"+nekretnina.id;
+        pretrageParagraf.textContent = "Pretrage: "+ nekretnina.pretrage;
+        podaciDiv.appendChild(pretrageParagraf);
+
+        let klikoviParagraf = document.createElement("p");
+        klikoviParagraf.className = "klikovi-"+nekretnina.id;
+        klikoviParagraf.textContent = "Klikovi: "+ nekretnina.klikovi;
+        podaciDiv.appendChild(klikoviParagraf);
+
         let cijenaParagraf = document.createElement("p");
         cijenaParagraf.classList.add("cijena");
         cijenaParagraf.textContent = "Cijena: " + nekretnina.cijena + " KM";
         podaciDiv.appendChild(cijenaParagraf);
 
+        
         let detaljiButton = document.createElement("button");
         detaljiButton.textContent = "Detalji";
         podaciDiv.appendChild(detaljiButton);
@@ -58,6 +70,23 @@ function spojiNekretnine(divReferenca, instancaModula, kriterij) {
         divReferenca.appendChild(nekretninaHeading);
         divReferenca.appendChild(gridContainer);
 
+
+
+
+       /* setInterval(async () => {
+            const listaId = filtriraneNekretnine.map(nekretnina => nekretnina.id);
+    
+            MarketingAjax.osvjeziPretrage(listaId, (errPretrage, dataPretrage) => {
+                if (errPretrage) {
+                    console.log(errPretrage);
+                } else {
+                    console.log('Uspješno ažuriranje pretraga', dataPretrage);
+                    // Ažuriranje prikaza pretraga na sučelju, ako je potrebno
+                }
+            });
+
+        }, 5000);*/ // Postavljanje intervala na 500ms (prilagodite prema potrebi)
+    
 }
 
 const divStan = document.getElementById("stan");
@@ -104,7 +133,7 @@ const filtrirajBtn = document.getElementById("filtrirajBtn");
             min_kvadratura: minKvadratura,
             max_kvadratura: maxKvadratura
         };
-    
+        let listaId = [];
         PoziviAjax.getNekretnine(function (error, data) {
             if (error) {
                 console.error('Greška prilikom dobavljanja nekretnina sa servera:', error);
@@ -121,11 +150,42 @@ const filtrirajBtn = document.getElementById("filtrirajBtn");
                 // Filtriraj nekretnine
                 let filtriraneNekretnine = SpisakNekretnina();
                 filtriraneNekretnine.init(nekretnine.filtrirajNekretnine(kriterij));
+                
+                let filterStanovi = filtriraneNekretnine.filtrirajNekretnine({ tip_nekretnine: "Stan" });
+                let filterKuce = filtriraneNekretnine.filtrirajNekretnine({ tip_nekretnine: "Kuća" });
+                let filterPP = filtriraneNekretnine.filtrirajNekretnine({ tip_nekretnine: "Poslovni prostor" });
 
+                console.log("Stanovi",filterStanovi);
+                console.log("Kuće",filterKuce);
+                console.log("SPoslovni prostor",filterPP);
+
+                let filteri = [];
+                for(let element of filterStanovi){
+                    filteri.push(element);
+                }
+                for(let element of filterKuce){
+                    filteri.push(element); 
+                }
+                for(let element of filterPP){
+                    filteri.push(element); 
+                }
+
+                console.log(filteri);
+
+                MarketingAjax.novoFiltriranje(filteri, function(err,data){
+                    if(err){
+                        console.log(err);
+                    }else{
+                        console.log(data);
+                    }
+                });
+             
                 spojiNekretnine(divStan, filtriraneNekretnine, "Stan");
                 spojiNekretnine(divKuca, filtriraneNekretnine, "Kuća");
                 spojiNekretnine(divPp, filtriraneNekretnine, "Poslovni prostor");
             }
         });
+        console.log("Lista ideva",listaId);
+
     });    
 

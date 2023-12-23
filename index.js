@@ -9,11 +9,9 @@ const app = express();
 app.use(express.static("public"));
 app.use(express.static("public/html"));
 
-/*app.use(express.static(__dirname + 'public/html'))*/
-
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(bodyParser.json({ strict: false }));
 
 
 app.use(session({
@@ -226,6 +224,61 @@ app.post('/login',function(req,res){
             const nekretnine = JSON.parse(data);
             return res.status(200).json(nekretnine);
     });
+ });
+
+
+ // Marketing
+ /*app.post('/marketing/nekretnine', (req, res) => {
+    const nizNekretnina = req.body;
+    const putanjaNekretnine = path.join(__dirname, '/public/data/nekretnine.json');
+
+    console.log("Niz koji stigne u index ",nizNekretnina);
+});*/
+
+
+app.post('/marketing/nekretnine', (req, res) => {
+  // console.log("Tijelo zahtjeva",req.body);
+    const putanjaNekretnine = path.join(__dirname, '/public/data/nekretnine.json');
+    fs.readFile(putanjaNekretnine, 'utf8', (err, data) => {
+        if (err) {
+            return res.status(500).json({ greska: 'Interna greska servera' });
+        }
+     //   console.log("Bio sam ovdje");
+        try {
+            let nekretnine = JSON.parse(data);
+            for (let i = 0; i < nekretnine.length; i++) {
+                let found = false;
+                for (let j = 0; j < req.body.filtriraneNekretnine.length; j++) {
+                    if (req.body.filtriraneNekretnine[j].id === nekretnine[i].id) {
+                        found = true;
+                        break;
+                    }
+                }
+                if (found) {
+                    nekretnine[i].pretrage = nekretnine[i].pretrage + 1;
+                    console.log("Pronadjen");
+                }
+            }
+            fs.writeFile(putanjaNekretnine, JSON.stringify(nekretnine, null, 2), (errWrite) => {
+                if (errWrite) {
+                    return res.status(500).json({ greska: 'Interna greska servera' });
+                }
+                return res.status(200).json({ poruka: 'Podaci o nekretninama su ažurirani' });
+            });
+        } catch (err) {
+            console.error('Greška prilikom izvršavanja zahtjeva:', err);
+            return res.status(500).json({ greska: 'Interna greska servera' });
+        }
+    });
+    
+});
+
+ app.post('/marketing/nekretnina/:id',(req,res)=>{
+        const nekretninaID = req.params.id;
+ });
+
+ app.post('/marketing/osvjezi',(req,res)=>{
+    
  });
 
 
