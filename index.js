@@ -273,8 +273,33 @@ app.post('/marketing/nekretnine', (req, res) => {
     
 });
 
- app.post('/marketing/nekretnina/:id',(req,res)=>{
+ app.post('/marketing/nekretnina/:id',async (req,res)=>{
         const nekretninaID = req.params.id;
+        const putanjaNekretnine = path.join(__dirname, '/public/data/nekretnine.json');
+        fs.readFile(putanjaNekretnine, 'utf8', (err, data) => {
+            if (err) {
+                return res.status(500).json({ greska: 'Interna greska servera' });
+            }
+        try{
+            let nekretnine = JSON.parse(data);
+            for (let i = 0; i < nekretnine.length; i++){
+                if(nekretnine[i].id == nekretninaID){
+                    nekretnine[i].klikovi = nekretnine[i].klikovi + 1;
+                    break;
+                }
+            }
+            fs.writeFile(putanjaNekretnine, JSON.stringify(nekretnine, null, 2), (errWrite) => {
+                if (errWrite) {
+                    return res.status(500).json({ greska: 'Interna greska servera' });
+                }
+                return res.status(200).json({ poruka: 'Podaci o nekretninama su ažurirani' });
+            });
+        } catch (err) {
+            console.error('Greška prilikom izvršavanja zahtjeva:', err);
+            return res.status(500).json({ greska: 'Interna greska servera' });
+        }
+
+        });  
  });
 
  app.post('/marketing/osvjezi',(req,res)=>{
