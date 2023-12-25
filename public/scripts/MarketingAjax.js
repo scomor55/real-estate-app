@@ -54,7 +54,7 @@ const MarketingAjax = (() => {
     }
 
     const klikNekretnina = (nekretninaId, fnCallback)=>{
-        const url = `${BASE_URL}/klik`;
+        const url = `marketing/nekretnina/${nekretninaId}`;
         const ajax = new XMLHttpRequest();
         ajax.onreadystatechange = function() {
             if(ajax.readyState == 4 && ajax.status == 200){
@@ -64,7 +64,7 @@ const MarketingAjax = (() => {
                 fnCallback(ajax.responseText, null);
             }
         };
-        ajax.open("POST",url,true);
+        ajax.open("POST",url.replace(":id", nekretninaId),true);
         ajax.setRequestHeader("Content-Type","application/json");
         ajax.send(JSON.stringify(nekretninaId));
     }

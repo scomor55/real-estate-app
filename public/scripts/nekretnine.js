@@ -59,6 +59,7 @@ function spojiNekretnine(divReferenca, instancaModula, kriterij) {
 
         
         let detaljiButton = document.createElement("button");
+        detaljiButton.className = nekretnina.id;
         detaljiButton.textContent = "Detalji";
         podaciDiv.appendChild(detaljiButton);
 
@@ -188,4 +189,23 @@ const filtrirajBtn = document.getElementById("filtrirajBtn");
         console.log("Lista ideva",listaId);
 
     });    
+
+function handleDetaljiClick(nekretninaId){
+    MarketingAjax.klikNekretnina(nekretninaId,function(err,data){
+        if(err){
+            console.log(err);
+        }else{
+            console.log(data);
+        }
+    });
+}
+
+
+ document.addEventListener('click',function(event){
+    if(event.target.tagName === 'BUTTON' && event.target.textContent === 'Detalji'){
+        const nekretninaId = parseInt(event.target.classList[0]);
+        console.log("Bio sam ovdje");
+        handleDetaljiClick(nekretninaId);
+    }
+ });   
 
