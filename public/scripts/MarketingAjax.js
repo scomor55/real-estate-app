@@ -1,10 +1,10 @@
 const MarketingAjax = (() => {
 
     const BASE_URL = "/marketing";
-    const osvjeziPretrage = async(nizNekretnina,fnCallback) => {
+    const osvjeziPretrage = async(nekretninaId,fnCallback) => {
     
         //    const url = `${BASE_URL}/osvjezi`;
-            const url = 'marketing/nekretnine';
+            const url = 'marketing/osvjezi';
             const ajax = new XMLHttpRequest();
             ajax.onreadystatechange = function() {
                 if(ajax.readyState == 4 && ajax.status == 200){
@@ -16,12 +16,13 @@ const MarketingAjax = (() => {
             };
         ajax.open("POST",url,true);
         ajax.setRequestHeader("Content-Type","application/json");
-        console.log("Niz koji se salje",nizNekretnina);
-        ajax.send(JSON.stringify(nizNekretnina));
+        console.log("Niz koji se salje",nekretninaId);
+        ajax.send(JSON.stringify({ nizNekretnina: [nekretninaId] }));
     };
 
     const osvjeziKlikove = (nekretninaId,fnCallback) =>{
-        const url = `${BASE_URL}/klikovi`;
+    //    const url = `${BASE_URL}/klikovi`;
+        const url = 'marketing/osvjezi';
         const ajax = new XMLHttpRequest();
         ajax.onreadystatechange = function() {
             if(ajax.readyState == 4 && ajax.status == 200){
@@ -33,7 +34,7 @@ const MarketingAjax = (() => {
         };
         ajax.open("POST",url,true);
         ajax.setRequestHeader("Content-Type","application/json");
-        ajax.send(JSON.stringify({nekretninaId}));
+        ajax.send(JSON.stringify({ nizNekretnina: [nekretninaId] }));
     };
 
     const novoFiltriranje = (filtriraneNekretnine,fnCallback)=>{

@@ -200,12 +200,61 @@ function handleDetaljiClick(nekretninaId){
     });
 }
 
+let posljednjaKliknutaNekretnina = null;
+
 
  document.addEventListener('click',function(event){
     if(event.target.tagName === 'BUTTON' && event.target.textContent === 'Detalji'){
         const nekretninaId = parseInt(event.target.classList[0]);
-        console.log("Bio sam ovdje");
+
+      /*  if (posljednjaKliknutaNekretnina) {
+            posljednjaKliknutaNekretnina.style.width = '';
+        }
+*/
+    /*    const nekretninaDiv = event.target.closest('.nekretnina');
+        if (nekretninaDiv) {
+            // Pronađi div s klasom "podaci" unutar nekretnine
+            const podaciDiv = nekretninaDiv.querySelector('.podaci');
+
+            // Pronađi dugme "Detalji" unutar diva "podaci"
+            const detaljiButton = podaciDiv.querySelector('button');
+
+            // Ako je pronađeno dugme "Detalji"
+            if (detaljiButton) {
+                // Postavi širinu nekretnine na 500px
+                nekretninaDiv.style.width = '500px';
+                posljednjaKliknutaNekretnina = nekretninaDiv;
+
+                // Ažuriraj ostale stilove prema potrebi
+                podaciDiv.style.padding = '30px';  // Primjer dodatnog ažuriranja
+            }
+        }*/
         handleDetaljiClick(nekretninaId);
     }
- });   
+ });  
+ 
 
+ 
+ const divovi = [divStan,divKuca,divPp];
+
+ setInterval(() => {
+    divovi.forEach(div => {
+        const nekretninaId = parseInt(div.id);
+        console.log(nekretninaId);
+        MarketingAjax.osvjeziPretrage(nekretninaId, (errPretrage, dataPretrage) => {
+            if (errPretrage) {
+                console.log(errPretrage);
+            } else {
+                console.log('Uspješno ažuriranje pretraga', dataPretrage);
+            }
+        });
+
+        MarketingAjax.osvjeziKlikove(nekretninaId, (errKlikovi, dataKlikovi) => {
+            if (errKlikovi) {
+                console.log(errKlikovi);
+            } else {
+                console.log('Uspješno ažuriranje klikova', dataKlikovi);
+            }
+        });
+    });
+}, 500);

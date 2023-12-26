@@ -302,8 +302,20 @@ app.post('/marketing/nekretnine', (req, res) => {
         });  
  });
 
- app.post('/marketing/osvjezi',(req,res)=>{
-    
+ app.post('/marketing/osvjezi',async (req,res)=>{
+    const nizNekretnina = req.body.nizNekretnina;
+    const putanjaNekretnine = path.join(__dirname, '/public/data/nekretnine.json');
+    try {
+        const data = fs.readFileSync(putanjaNekretnine, 'utf8');
+        const trenutneNekretnine = JSON.parse(data);
+
+        const promijenjeneNekretnine = trenutneNekretnine.filter(nekretnina => nizNekretnina.includes(nekretnina.id));
+
+        return res.status(200).json({ nizNekretnina: promijenjeneNekretnine });
+    } catch (err) {
+        return res.status(500).json({ greska: 'Interna greška servera' });
+    }
+
  });
 
 
