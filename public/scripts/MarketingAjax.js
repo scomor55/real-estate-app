@@ -1,7 +1,7 @@
 const MarketingAjax = (() => {
 
     const BASE_URL = "/marketing";
-    const osvjeziPretrage = async(nekretninaId,fnCallback) => {
+    const osvjeziPretrage = async(divNekretnina,fnCallback) => {
     
         //    const url = `${BASE_URL}/osvjezi`;
             const url = 'marketing/osvjezi';
@@ -14,13 +14,21 @@ const MarketingAjax = (() => {
                     fnCallback(ajax.responseText, null);
                 }
             };
+
+            const nekretnineDivs = divNekretnina.querySelectorAll('.nekretnina');
+            const nizIdova = Array.from(nekretnineDivs).map(nekretninaDiv =>{
+                return parseInt(nekretninaDiv.getAttribute('data-nekretnina-id'));
+            });
+    
+            console.log("Niz koji se salje iz marketinga",nizIdova); 
+            
         ajax.open("POST",url,true);
         ajax.setRequestHeader("Content-Type","application/json");
         console.log("Niz koji se salje",nekretninaId);
-        ajax.send(JSON.stringify({ nizNekretnina: [nekretninaId] }));
+        ajax.send(JSON.stringify({ nizNekretnina: nizIdova }));
     };
 
-    const osvjeziKlikove = (nekretninaId,fnCallback) =>{
+    const osvjeziKlikove = (divNekretnina,fnCallback) =>{
     //    const url = `${BASE_URL}/klikovi`;
         const url = 'marketing/osvjezi';
         const ajax = new XMLHttpRequest();
@@ -32,9 +40,17 @@ const MarketingAjax = (() => {
                 fnCallback(ajax.responseText, null);
             }
         };
+
+        const nekretnineDivs = divNekretnina.querySelectorAll('.nekretnina');
+        const nizIdova = Array.from(nekretnineDivs).map(nekretninaDiv =>{
+            return parseInt(nekretninaDiv.getAttribute('data-nekretnina-id'));
+        });
+
+        console.log("Niz koji se salje iz marketinga",nizIdova);
+
         ajax.open("POST",url,true);
         ajax.setRequestHeader("Content-Type","application/json");
-        ajax.send(JSON.stringify({ nizNekretnina: [nekretninaId] }));
+        ajax.send(JSON.stringify({ nizNekretnina: nizIdova }));
     };
 
     const novoFiltriranje = (filtriraneNekretnine,fnCallback)=>{

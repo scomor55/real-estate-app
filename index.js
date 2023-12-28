@@ -23,7 +23,7 @@ app.use(session({
 
 app.post('/login',function(req,res){
     const {username , password} = req.body;
-    const putanja = path.join(__dirname,'/public/data/korisnici.json');
+    const putanja = path.join(__dirname,'/data/korisnici.json');
 
     fs.readFile(putanja,'utf8' , function(err,data){
         if(err){
@@ -77,7 +77,7 @@ app.post('/login',function(req,res){
     if(!req.session.username){
         return res.status(401).json({ greska: 'Neautorizovan pristup'});
     }
-    const putanja = path.join(__dirname,'/public/data/korisnici.json');
+    const putanja = path.join(__dirname,'/data/korisnici.json');
 
     fs.readFile(putanja,'utf8',(err,data)=>{
         if(err){
@@ -109,7 +109,7 @@ app.post('/login',function(req,res){
     if(!id || !tekst_upita){
         return res.status(400).json({greska: 'Nedostaju neophodni podaci'});
     }
-    const putanjaKorisnici = path.join(__dirname,'/public/data/korisnici.json');
+    const putanjaKorisnici = path.join(__dirname,'/data/korisnici.json');
     fs.readFile(putanjaKorisnici,'utf8',(errKorisnici,dataKorisnici)=>{
         if(errKorisnici){
             return res.status(500).json({greska: 'Interna greska servera'});
@@ -122,7 +122,7 @@ app.post('/login',function(req,res){
                 return res.status(500).json({greska: 'Neispravni korisnicki podaci'});
             }
 
-            const putanjaNekretnine = path.join(__dirname,'/public/data/nekretnine.json');
+            const putanjaNekretnine = path.join(__dirname,'/data/nekretnine.json');
             fs.readFile(putanjaNekretnine,'utf8',(errNekretnine,dataNekretnine)=>{
                 if(errNekretnine){
                     return res.status(500).json({greska: 'Interna greska servera'});
@@ -164,7 +164,7 @@ app.post('/login',function(req,res){
         return res.status(401).json({greska: 'Neautorizovan pristup'});
     }
     const {ime,prezime,username,password} = req.body;
-    const putanjaKorisici = path.join(__dirname,'/public/data/korisnici.json');
+    const putanjaKorisici = path.join(__dirname,'/data/korisnici.json');
 
     fs.readFile(putanjaKorisici,'utf8',(errKorisnici,dataKorisnici)=>{
         if(errKorisnici){
@@ -216,7 +216,7 @@ app.post('/login',function(req,res){
 
 
  app.get('/nekretnine',(req,res) => {
-    const putanja = path.join(__dirname,'/public/data/nekretnine.json');
+    const putanja = path.join(__dirname,'/data/nekretnine.json');
     fs.readFile(putanja,'utf8',(err,data)=>{
        if(err){
             return res.status(500).json({greska : 'Interna greska servera'});
@@ -237,8 +237,8 @@ app.post('/login',function(req,res){
 
 
 app.post('/marketing/nekretnine', (req, res) => {
-  // console.log("Tijelo zahtjeva",req.body);
-    const putanjaNekretnine = path.join(__dirname, '/public/data/nekretnine.json');
+   console.log("Tijelo zahtjeva",req.body);
+    const putanjaNekretnine = path.join(__dirname, '/data/nekretnine.json');
     fs.readFile(putanjaNekretnine, 'utf8', (err, data) => {
         if (err) {
             return res.status(500).json({ greska: 'Interna greska servera' });
@@ -249,7 +249,7 @@ app.post('/marketing/nekretnine', (req, res) => {
             for (let i = 0; i < nekretnine.length; i++) {
                 let found = false;
                 for (let j = 0; j < req.body.filtriraneNekretnine.length; j++) {
-                    if (req.body.filtriraneNekretnine[j].id === nekretnine[i].id) {
+                    if (req.body.filtriraneNekretnine[j] === nekretnine[i].id) {
                         found = true;
                         break;
                     }
@@ -275,7 +275,7 @@ app.post('/marketing/nekretnine', (req, res) => {
 
  app.post('/marketing/nekretnina/:id',async (req,res)=>{
         const nekretninaID = req.params.id;
-        const putanjaNekretnine = path.join(__dirname, '/public/data/nekretnine.json');
+        const putanjaNekretnine = path.join(__dirname, '/data/nekretnine.json');
         fs.readFile(putanjaNekretnine, 'utf8', (err, data) => {
             if (err) {
                 return res.status(500).json({ greska: 'Interna greska servera' });
@@ -304,13 +304,14 @@ app.post('/marketing/nekretnine', (req, res) => {
 
  app.post('/marketing/osvjezi',async (req,res)=>{
     const nizNekretnina = req.body.nizNekretnina;
-    const putanjaNekretnine = path.join(__dirname, '/public/data/nekretnine.json');
+    const putanjaNekretnine = path.join(__dirname, '/data/nekretnine.json');
+    console.log("niz nekretnina",nizNekretnina);
     try {
         const data = fs.readFileSync(putanjaNekretnine, 'utf8');
         const trenutneNekretnine = JSON.parse(data);
 
         const promijenjeneNekretnine = trenutneNekretnine.filter(nekretnina => nizNekretnina.includes(nekretnina.id));
-
+        console.log(promijenjeneNekretnine);
         return res.status(200).json({ nizNekretnina: promijenjeneNekretnine });
     } catch (err) {
         return res.status(500).json({ greska: 'Interna greška servera' });

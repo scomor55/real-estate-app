@@ -1,8 +1,8 @@
 [
   {
     "id": 1,
-    "ime": "Neko1",
-    "prezime": "Nekić1",
+    "ime": "Neko",
+    "prezime": "Nekić",
     "username": "username1",
     "password": "$2b$10$H/tGxAklLjgjj1eK2GYZ3.FfsohKim420uEGY3MkjoAe5cSmQU74C",
     "slika": "slika"
