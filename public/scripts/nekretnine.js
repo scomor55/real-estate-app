@@ -44,12 +44,12 @@ function spojiNekretnine(divReferenca, instancaModula, kriterij) {
 
         let pretrageParagraf = document.createElement("p");
         pretrageParagraf.className = "pretrage-"+nekretnina.id;
-        pretrageParagraf.textContent = "Pretrage: "+ nekretnina.pretrage;
+       /* pretrageParagraf.textContent = "Pretrage: "+ nekretnina.pretrage;*/
         podaciDiv.appendChild(pretrageParagraf);
 
         let klikoviParagraf = document.createElement("p");
         klikoviParagraf.className = "klikovi-"+nekretnina.id;
-        klikoviParagraf.textContent = "Klikovi: "+ nekretnina.klikovi;
+       /* klikoviParagraf.textContent = "Klikovi: "+ nekretnina.klikovi;*/
         podaciDiv.appendChild(klikoviParagraf);
 
         let cijenaParagraf = document.createElement("p");
@@ -74,18 +74,49 @@ function spojiNekretnine(divReferenca, instancaModula, kriterij) {
 
 
 
-    /*    setInterval(async () => {
-            const listaId = filtriraneNekretnine.map(nekretnina => nekretnina.id);
-    
-            MarketingAjax.osvjeziPretrage(listaId, (errPretrage, dataPretrage) => {
-                if (errPretrage) {
-                    console.log(errPretrage);
-                } else {
-                    console.log('Uspješno ažuriranje pretraga', dataPretrage);
-                }
-            });
+        setInterval(async () => {
+            const divNekretnine = document.getElementById('divNekretnine');
+        
+            try {
+                const dataPretrage = await MarketingAjax.osvjeziPretrage(divNekretnine);
+                const pretrage = dataPretrage.nizNekretnina;
+            //    console.log("Data-pretrage",dataPretrage);
+                console.log("Pretrage",pretrage);
 
-        }, 500); */
+                for(let element of pretrage){
+                    const id = element.id;
+                    const pretrage = element.pretrage;
+
+                    const pretrageParagraf = divNekretnine.querySelector('.pretrage-' + id);
+                    console.log(pretrageParagraf); 
+                    if (pretrageParagraf) {
+                        pretrageParagraf.textContent = 'Pretrage: ' + pretrage;
+                    }
+                }
+            } catch (errPretrage) {
+                console.error(errPretrage);
+            }
+        
+            try {
+                const dataKlikovi = await MarketingAjax.osvjeziKlikove(divNekretnine);
+                const klikovi = dataKlikovi.nizNekretnina;
+             //   console.log("Data-klikovi",dataKlikovi);  
+             //   console.log("Klikovi",klikovi);
+             for(let element of klikovi){
+                const id = element.id;
+                const klikovi = element.klikovi;
+
+                const klikoviParagraf = divNekretnine.querySelector('.klikovi-' + id);
+                if (klikoviParagraf) {
+                    klikoviParagraf.textContent = 'Klikovi: ' + klikovi;
+                }
+            }
+               
+            } catch (errKlikovi) {
+                console.error(errKlikovi);
+            }
+        
+        }, 500);
     
 }
 
@@ -169,13 +200,7 @@ const filtrirajBtn = document.getElementById("filtrirajBtn");
 
                 console.log(filteri);
 
-                MarketingAjax.novoFiltriranje(filteri, function(err,data){
-                    if(err){
-                        console.log(err);
-                    }else{
-                        console.log(data);
-                    }
-                });
+                MarketingAjax.novoFiltriranje(filteri);
              
                 spojiNekretnine(divStan, filtriraneNekretnine, "Stan");
                 spojiNekretnine(divKuca, filtriraneNekretnine, "Kuća");
@@ -187,13 +212,7 @@ const filtrirajBtn = document.getElementById("filtrirajBtn");
     });    
 
 function handleDetaljiClick(nekretninaId){
-    MarketingAjax.klikNekretnina(nekretninaId,function(err,data){
-        if(err){
-            console.log(err);
-        }else{
-            console.log(data);
-        }
-    });
+    MarketingAjax.klikNekretnina(nekretninaId);
 }
 
 let posljednjaKliknutaNekretnina = null;
@@ -228,5 +247,8 @@ let posljednjaKliknutaNekretnina = null;
         handleDetaljiClick(nekretninaId);
     }
  });  
+
+
+
  
 

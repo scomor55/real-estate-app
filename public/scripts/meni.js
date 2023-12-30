@@ -60,7 +60,6 @@ function SpojiMeni(divReferenca){
                         console.log("Korisnik je odjavljen");
                     }
                 });
-
                 console.log("Kliknuli ste na Odjava");
             });
         }
@@ -69,7 +68,7 @@ function SpojiMeni(divReferenca){
     element4.appendChild(strongElement4);
     lista.appendChild(element4);
 
-divReferenca.appendChild(lista);
+    divReferenca.appendChild(lista);
 } 
 
 const divWrapper = document.getElementById("wrapper");

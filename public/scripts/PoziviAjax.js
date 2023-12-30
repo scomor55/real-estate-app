@@ -72,6 +72,9 @@ const PoziviAjax = (() => {
         const ajax = new XMLHttpRequest();
         ajax.onreadystatechange = function(){
             if(ajax.readyState == 4 && ajax.status == 200){
+                console.log("Redirekcija se izvršava");
+                window.location.href = '../html/nekretnine.html';
+                console.log("Redirekcija se izvršila");
                 fnCallback(null, JSON.parse(ajax.responseText));
             }
             if(ajax.readyState == 4 && ajax.status == 404) {

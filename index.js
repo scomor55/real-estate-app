@@ -305,18 +305,39 @@ app.post('/marketing/nekretnine', (req, res) => {
  app.post('/marketing/osvjezi',async (req,res)=>{
     const nizNekretnina = req.body.nizNekretnina;
     const putanjaNekretnine = path.join(__dirname, '/data/nekretnine.json');
-    console.log("niz nekretnina",nizNekretnina);
-    try {
-        const data = fs.readFileSync(putanjaNekretnine, 'utf8');
-        const trenutneNekretnine = JSON.parse(data);
+    const putanjaMarketing = path.join(__dirname,'/data/marketing.json');
 
-        const promijenjeneNekretnine = trenutneNekretnine.filter(nekretnina => nizNekretnina.includes(nekretnina.id));
-        console.log(promijenjeneNekretnine);
-        return res.status(200).json({ nizNekretnina: promijenjeneNekretnine });
-    } catch (err) {
-        return res.status(500).json({ greska: 'Interna greška servera' });
-    }
+    const nekretnine = JSON.parse(fs.readFileSync(putanjaNekretnine,'utf8'));
+    const marketingPodaci = JSON.parse(fs.readFileSync(putanjaMarketing,'utf8'));
 
+    const promjene = [];
+    
+    nizNekretnina.forEach(nekretninaID =>{
+        const staraNekretnina = marketingPodaci.find(data => data.id === nekretninaID);
+        const novaNekretnina = nekretnine.find(nekretnina => nekretnina.id === nekretninaID);
+
+        if(staraNekretnina && novaNekretnina){
+            if(staraNekretnina.klikovi !== novaNekretnina.klikovi ||staraNekretnina.pretrage !== novaNekretnina.pretrage){
+                promjene.push({
+                    id: nekretninaID,
+                    klikovi: novaNekretnina.klikovi,
+                    pretrage: novaNekretnina.pretrage
+                });
+            }
+        }
+    });
+    console.log("Stari podaci:",marketingPodaci);
+    promjene.forEach(promjena =>{
+        const indeks = marketingPodaci.findIndex(data => data.id === promjena.id);
+        if(indeks !== -1){
+            marketingPodaci[indeks] = promjena;
+        }
+    });
+    console.log("Promjene",promjene);
+    fs.writeFileSync(putanjaMarketing,JSON.stringify(marketingPodaci),'utf8');
+   // console.log("marketing podaci",marketingPodaci);
+
+    return res.status(200).json({nizNekretnina: marketingPodaci});
  });
 
 
