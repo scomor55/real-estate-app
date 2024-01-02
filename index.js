@@ -243,7 +243,6 @@ app.post('/marketing/nekretnine', (req, res) => {
         if (err) {
             return res.status(500).json({ greska: 'Interna greska servera' });
         }
-     //   console.log("Bio sam ovdje");
         try {
             let nekretnine = JSON.parse(data);
             for (let i = 0; i < nekretnine.length; i++) {
@@ -302,43 +301,29 @@ app.post('/marketing/nekretnine', (req, res) => {
         });  
  });
 
- app.post('/marketing/osvjezi',async (req,res)=>{
+ app.post('/marketing/osvjezi', async (req, res) => {
     const nizNekretnina = req.body.nizNekretnina;
-    const putanjaNekretnine = path.join(__dirname, '/data/nekretnine.json');
-    const putanjaMarketing = path.join(__dirname,'/data/marketing.json');
+    const putanjaMarketing = path.join(__dirname, '/data/marketing.json');
 
-    const nekretnine = JSON.parse(fs.readFileSync(putanjaNekretnine,'utf8'));
-    const marketingPodaci = JSON.parse(fs.readFileSync(putanjaMarketing,'utf8'));
+    try {
+        const marketingPodaci = JSON.parse(fs.readFileSync(putanjaMarketing, 'utf-8'));
 
-    const promjene = [];
-    
-    nizNekretnina.forEach(nekretninaID =>{
-        const staraNekretnina = marketingPodaci.find(data => data.id === nekretninaID);
-        const novaNekretnina = nekretnine.find(nekretnina => nekretnina.id === nekretninaID);
+        nizNekretnina.forEach((novaNekretnina) => {
+            const trenutnaNekretnina = marketingPodaci.find((data) => data.id === novaNekretnina.id);
 
-        if(staraNekretnina && novaNekretnina){
-            if(staraNekretnina.klikovi !== novaNekretnina.klikovi ||staraNekretnina.pretrage !== novaNekretnina.pretrage){
-                promjene.push({
-                    id: nekretninaID,
-                    klikovi: staraNekretnina.klikovi,
-                    pretrage: staraNekretnina.pretrage
-                });
+            if (trenutnaNekretnina) {
+                trenutnaNekretnina.klikovi = novaNekretnina.klikovi;
+                trenutnaNekretnina.pretrage = novaNekretnina.pretrage;
             }
-        }
-    });
-  //  console.log("Stari podaci:",marketingPodaci);
-    promjene.forEach(promjena =>{
-        const indeks = marketingPodaci.findIndex(data => data.id === promjena.id);
-        if(indeks !== -1){
-            marketingPodaci[indeks] = promjena;
-        }
-    });
- //   console.log("Promjene",promjene);
-    fs.writeFileSync(putanjaMarketing,JSON.stringify(marketingPodaci),'utf8');
-   // console.log("marketing podaci",marketingPodaci);
+        });
 
-    return res.status(200).json({nizNekretnina: marketingPodaci});
- });
+        fs.writeFileSync(putanjaMarketing, JSON.stringify(marketingPodaci, null, 2), 'utf8');
 
+        return res.status(200).json({ nizNekretnina: marketingPodaci });
+    } catch (error) {
+        console.error('Greška prilikom osvježavanja podataka:', error);
+        return res.status(500).json({ greska: 'Greška prilikom osvježavanja podataka.' });
+    }
+});
 
 app.listen(3000)
