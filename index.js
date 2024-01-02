@@ -238,7 +238,7 @@ app.post('/login',function(req,res){
 
 app.post('/marketing/nekretnine', (req, res) => {
    console.log("Tijelo zahtjeva",req.body);
-    const putanjaNekretnine = path.join(__dirname, '/data/nekretnine.json');
+    const putanjaNekretnine = path.join(__dirname, '/data/marketing.json');
     fs.readFile(putanjaNekretnine, 'utf8', (err, data) => {
         if (err) {
             return res.status(500).json({ greska: 'Interna greska servera' });
@@ -275,7 +275,7 @@ app.post('/marketing/nekretnine', (req, res) => {
 
  app.post('/marketing/nekretnina/:id',async (req,res)=>{
         const nekretninaID = req.params.id;
-        const putanjaNekretnine = path.join(__dirname, '/data/nekretnine.json');
+        const putanjaNekretnine = path.join(__dirname, '/data/marketing.json');
         fs.readFile(putanjaNekretnine, 'utf8', (err, data) => {
             if (err) {
                 return res.status(500).json({ greska: 'Interna greska servera' });
@@ -320,20 +320,20 @@ app.post('/marketing/nekretnine', (req, res) => {
             if(staraNekretnina.klikovi !== novaNekretnina.klikovi ||staraNekretnina.pretrage !== novaNekretnina.pretrage){
                 promjene.push({
                     id: nekretninaID,
-                    klikovi: novaNekretnina.klikovi,
-                    pretrage: novaNekretnina.pretrage
+                    klikovi: staraNekretnina.klikovi,
+                    pretrage: staraNekretnina.pretrage
                 });
             }
         }
     });
-    console.log("Stari podaci:",marketingPodaci);
+  //  console.log("Stari podaci:",marketingPodaci);
     promjene.forEach(promjena =>{
         const indeks = marketingPodaci.findIndex(data => data.id === promjena.id);
         if(indeks !== -1){
             marketingPodaci[indeks] = promjena;
         }
     });
-    console.log("Promjene",promjene);
+ //   console.log("Promjene",promjene);
     fs.writeFileSync(putanjaMarketing,JSON.stringify(marketingPodaci),'utf8');
    // console.log("marketing podaci",marketingPodaci);
 

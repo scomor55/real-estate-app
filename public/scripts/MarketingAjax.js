@@ -9,7 +9,7 @@ const MarketingAjax = (() => {
             ajax.onreadystatechange = function () {
                 if (ajax.readyState == 4) {
                     if (ajax.status == 200) {
-                    //    console.log("Ono sto dodje u marketing:", ajax.responseText);
+        //             console.log("Ono sto dodje u marketing:", ajax.responseText);
                         resolve(JSON.parse(ajax.responseText));
                     } else if (ajax.status == 404) {
                         reject(ajax.responseText);
@@ -71,7 +71,7 @@ const MarketingAjax = (() => {
         };
         ajax.open("POST",url,true);
         ajax.setRequestHeader("Content-Type","application/json");
-        console.log("Lista filtriranih nekretnina",filtriraneNekretnine);
+     //   console.log("Lista filtriranih nekretnina",filtriraneNekretnine);
         ajax.send(JSON.stringify({filtriraneNekretnine}));
     }
 
