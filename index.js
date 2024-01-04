@@ -228,16 +228,10 @@ app.post('/login',function(req,res){
 
 
  // Marketing
- /*app.post('/marketing/nekretnine', (req, res) => {
-    const nizNekretnina = req.body;
-    const putanjaNekretnine = path.join(__dirname, '/public/data/nekretnine.json');
-
-    console.log("Niz koji stigne u index ",nizNekretnina);
-});*/
 
 
 app.post('/marketing/nekretnine', (req, res) => {
-   console.log("Tijelo zahtjeva",req.body);
+ //  console.log("Tijelo zahtjeva",req.body);
     const putanjaNekretnine = path.join(__dirname, '/data/marketing.json');
     fs.readFile(putanjaNekretnine, 'utf8', (err, data) => {
         if (err) {
@@ -255,7 +249,6 @@ app.post('/marketing/nekretnine', (req, res) => {
                 }
                 if (found) {
                     nekretnine[i].pretrage = nekretnine[i].pretrage + 1;
-                    console.log("Pronadjen");
                 }
             }
             fs.writeFile(putanjaNekretnine, JSON.stringify(nekretnine, null, 2), (errWrite) => {

@@ -5,6 +5,7 @@
         if(err){
             console.log(err);
         }else{
+            window.location.href = 'http://localhost:3000/nekretnine.html';
             console.log("Redirekcija se izvršila");
             console.log(data);
         }

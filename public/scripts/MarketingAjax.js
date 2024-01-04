@@ -1,7 +1,7 @@
 const MarketingAjax = (() => {
 
     const BASE_URL = "/marketing";
-    const osvjeziPretrage = async (divNekretnina) => {
+    function osvjeziPretrage(divNekretnina){
         const url = 'marketing/osvjezi';
         const ajax = new XMLHttpRequest();
     
@@ -30,7 +30,7 @@ const MarketingAjax = (() => {
         });
     };
     
-    const osvjeziKlikove = async (divNekretnina) => {
+    function osvjeziKlikove(divNekretnina){
         const url = 'marketing/osvjezi';
         const ajax = new XMLHttpRequest();
     
@@ -58,38 +58,44 @@ const MarketingAjax = (() => {
         });
     };
 
-    const novoFiltriranje = (filtriraneNekretnine,fnCallback)=>{
-        const url = `marketing/nekretnine`;
-        const ajax = new XMLHttpRequest();
-        ajax.onreadystatechange = function() {
-            if(ajax.readyState == 4 && ajax.status == 200){
-                fnCallback(null, JSON.parse(ajax.responseText));
-            }
-            if(ajax.readyState == 4 && ajax.status == 404) {
-                fnCallback(ajax.responseText, null);
-            }
-        };
-        ajax.open("POST",url,true);
-        ajax.setRequestHeader("Content-Type","application/json");
-     //   console.log("Lista filtriranih nekretnina",filtriraneNekretnine);
-        ajax.send(JSON.stringify({filtriraneNekretnine}));
-    }
+    function novoFiltriranje(filtriraneNekretnine){
+        const url = `${BASE_URL}/nekretnine`;
 
-    const klikNekretnina = (nekretninaId, fnCallback)=>{
+        return new Promise((resolve, reject) => {
+            const ajax = new XMLHttpRequest();
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4) {
+                    if (ajax.status == 200) {
+                        resolve(JSON.parse(ajax.responseText));
+                    } else if (ajax.status == 404) {
+                        reject(ajax.responseText);
+                    }
+                }
+            };
+            ajax.open("POST", url, true);
+            ajax.setRequestHeader("Content-Type", "application/json");
+            ajax.send(JSON.stringify({ filtriraneNekretnine }));
+        });
+    };
+
+    function klikNekretnina(nekretninaId){
         const url = `marketing/nekretnina/${nekretninaId}`;
-        const ajax = new XMLHttpRequest();
-        ajax.onreadystatechange = function() {
-            if(ajax.readyState == 4 && ajax.status == 200){
-                fnCallback(null, JSON.parse(ajax.responseText));
-            }
-            if(ajax.readyState == 4 && ajax.status == 404) {
-                fnCallback(ajax.responseText, null);
-            }
-        };
-        ajax.open("POST",url.replace(":id", nekretninaId),true);
-        ajax.setRequestHeader("Content-Type","application/json");
-        ajax.send(JSON.stringify(nekretninaId));
-    }
+        return new Promise((resolve, reject) => {
+            const ajax = new XMLHttpRequest();
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4) {
+                    if (ajax.status == 200) {
+                        resolve(JSON.parse(ajax.responseText));
+                    } else if (ajax.status == 404) {
+                        reject(ajax.responseText);
+                    }
+                }
+            };
+            ajax.open("POST", url, true);
+            ajax.setRequestHeader("Content-Type", "application/json");
+            ajax.send(JSON.stringify({ nekretninaId }));
+        });
+    };
 
     return {
         osvjeziPretrage,
