@@ -62,7 +62,49 @@ function spojiNekretnine(divReferenca, instancaModula, kriterij) {
         detaljiButton.className = nekretnina.id;
         detaljiButton.textContent = "Detalji";
         podaciDiv.appendChild(detaljiButton);
+        
 
+        let detaljiPrikazani = false;
+        let lokacijaParagraf, godinaIzgradnjeParagraf, otvoriDetaljeButton;
+
+        detaljiButton.addEventListener('click', function() {
+            if (!detaljiPrikazani) {
+                lokacijaParagraf = document.createElement("p");
+                lokacijaParagraf.textContent = "Lokacija: " + nekretnina.lokacija;
+                podaciDiv.appendChild(lokacijaParagraf);
+        
+                godinaIzgradnjeParagraf = document.createElement("p");
+                godinaIzgradnjeParagraf.textContent = "Godina izgradnje: " + nekretnina.godina_izgradnje;
+                podaciDiv.appendChild(godinaIzgradnjeParagraf);
+        
+                otvoriDetaljeButton = document.createElement("button");
+                otvoriDetaljeButton.className = "otvoriDetalje";
+                otvoriDetaljeButton.textContent = "Otvori detalje";
+                podaciDiv.appendChild(otvoriDetaljeButton);
+
+                otvoriDetaljeButton.addEventListener('click', function() {
+                    PoziviAjax.getNekretnina(nekretnina.id, function(err, data) {
+                        if (err) {
+                            console.error(err);
+                        } else {
+                            // Čuvanje podataka u localStorage
+                            localStorage.setItem('nekretnina', JSON.stringify(data));
+                            console.log("asasasasasasasas");
+                            // Preusmjeravanje na detalji.html
+                            window.location.href = '/detalji.html';
+                        }
+                    });
+                });
+        
+                detaljiPrikazani = true;
+            } else {
+                podaciDiv.removeChild(lokacijaParagraf);
+                podaciDiv.removeChild(godinaIzgradnjeParagraf);
+                podaciDiv.removeChild(otvoriDetaljeButton);
+        
+                detaljiPrikazani = false;
+            }
+        });
         nekretninaDiv.appendChild(podaciDiv);
         nekretninaDiv.setAttribute('data-nekretnina-id',nekretnina.id);
         gridContainer.appendChild(nekretninaDiv);
@@ -77,7 +119,6 @@ function spojiNekretnine(divReferenca, instancaModula, kriterij) {
 
 
         setInterval(async () => {
-            console.log("aaaaa");
             const divNekretnine = document.getElementById('divNekretnine');
             azurirajPretrage(divNekretnine);
             azurirajKlikove(divNekretnine);
@@ -215,7 +256,7 @@ const filtrirajBtn = document.getElementById("filtrirajBtn");
                 spojiNekretnine(divPp, filtriraneNekretnine, "Poslovni prostor");
             }
         });
-        console.log("Lista ideva",listaId);
+      //  console.log("Lista ideva",listaId);
 
     });    
 
@@ -233,7 +274,7 @@ let posljednjaKliknutaNekretnina = null;
         if (posljednjaKliknutaNekretnina) {
             posljednjaKliknutaNekretnina.style.width = '';
         }
-
+        
         const nekretninaDiv = event.target.closest('.nekretnina');
         if (nekretninaDiv) {
             const podaciDiv = nekretninaDiv.querySelector('.podaci');

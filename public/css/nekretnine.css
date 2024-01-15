@@ -56,6 +56,11 @@ a {
 .cijena {
     text-align: right;
 }
+
+.otvoriDetalje {
+    height: 40px;
+}
+
 button {
     margin-top: 20px;
     display: block;

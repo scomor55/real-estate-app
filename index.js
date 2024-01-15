@@ -232,4 +232,19 @@ app.post('/marketing/nekretnine',async(req, res) => {
         return res.status(500).json({ greska: 'Greška prilikom osvježavanja podataka.' });
     }
 });
+
+app.get('/nekretnina/:id',async(req,res) =>{
+    const nekretninaId = req.params.id;
+
+    try{
+        const nekretnina = await db.nekretnina.findByPk(nekretninaId);
+        if(nekretnina){
+        res.status(200).json(nekretnina);
+        }else{
+            res.status(400).json({ greska: `Nekretnina sa id-em ${nekretninaId} ne postoji` });
+        }
+    }catch(err){
+        return res.status(500).json({ greska: 'Interna greška servera' });
+    }
+});
 app.listen(3000)
