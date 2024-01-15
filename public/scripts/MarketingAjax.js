@@ -9,7 +9,7 @@ const MarketingAjax = (() => {
             ajax.onreadystatechange = function () {
                 if (ajax.readyState == 4) {
                     if (ajax.status == 200) {
-        //             console.log("Ono sto dodje u marketing:", ajax.responseText);
+        //            console.log("Ono sto dodje u marketing:", ajax.responseText);
                         resolve(JSON.parse(ajax.responseText));
                     } else if (ajax.status == 404) {
                         reject(ajax.responseText);
@@ -38,6 +38,7 @@ const MarketingAjax = (() => {
             ajax.onreadystatechange = function () {
                 if (ajax.readyState == 4) {
                     if (ajax.status == 200) {
+     //           console.log("Ono sto dodje u marketing:", ajax.responseText);
                         resolve(JSON.parse(ajax.responseText));
                     } else if (ajax.status == 404) {
                         reject(ajax.responseText);

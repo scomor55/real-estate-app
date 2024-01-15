@@ -77,6 +77,7 @@ function spojiNekretnine(divReferenca, instancaModula, kriterij) {
 
 
         setInterval(async () => {
+            console.log("aaaaa");
             const divNekretnine = document.getElementById('divNekretnine');
             azurirajPretrage(divNekretnine);
             azurirajKlikove(divNekretnine);
@@ -89,14 +90,13 @@ async function azurirajPretrage(divNekretnine){
         const dataPretrage = await MarketingAjax.osvjeziPretrage(divNekretnine);
         const pretrage = dataPretrage.nizNekretnina;
     //    console.log("Data-pretrage",dataPretrage);
-        console.log("Pretrage",pretrage);
+    //    console.log("Pretrage",pretrage);
 
         for(let element of pretrage){
             const id = element.id;
             const pretrage = element.pretrage;
 
             const pretrageParagraf = divNekretnine.querySelector('.pretrage-' + id);
-            console.log(pretrageParagraf); 
             if (pretrageParagraf) {
                 pretrageParagraf.textContent = 'Pretrage: ' + pretrage;
             }

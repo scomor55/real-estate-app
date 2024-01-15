@@ -214,28 +214,22 @@ app.post('/marketing/nekretnine',async(req, res) => {
 
  app.post('/marketing/osvjezi', async (req, res) => {
     const nizNekretnina = req.body.nizNekretnina;
-
     try {
-        const marketingPodaci = await db.nekretnina.findAll({
-            where: {
-                id: nizNekretnina.map((nekretnina) => nekretnina.id)
-            }
-        });
-        nizNekretnina.forEach((novaNekretnina) => {
-            const trenutnaNekretnina = marketingPodaci.find((data) => data.id === novaNekretnina.id);
+        for (const novaNekretnina of nizNekretnina) {
+            const trenutnaNekretnina = await db.nekretnina.findByPk(novaNekretnina.id);
 
             if (trenutnaNekretnina) {
-                trenutnaNekretnina.klikovi = novaNekretnina.klikovi;
-                trenutnaNekretnina.pretrage = novaNekretnina.pretrage;
-                trenutnaNekretnina.save(); 
+                await trenutnaNekretnina.update({
+                    klikovi: novaNekretnina.klikovi,
+                    pretrage: novaNekretnina.pretrage
+                });
             }
-        });
-
+        }
+        const marketingPodaci = await db.nekretnina.findAll({ raw: true });
         return res.status(200).json({ nizNekretnina: marketingPodaci });
     } catch (error) {
         console.error('Greška prilikom osvježavanja podataka:', error);
         return res.status(500).json({ greska: 'Greška prilikom osvježavanja podataka.' });
     }
 });
-
 app.listen(3000)
