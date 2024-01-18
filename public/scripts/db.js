@@ -14,5 +14,8 @@ db.upit =  require(__dirname+'/upit.js')(sequelize,Sequelize.DataTypes)
 db.nekretnina.hasMany(db.upit, {as: 'upiti'});
 db.upit.belongsTo(db.nekretnina);
 
+db.korisnik.hasMany(db.upit, { as: 'upiti' });
+db.upit.belongsTo(db.korisnik);
+
 
 module.exports = db;

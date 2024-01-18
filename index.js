@@ -247,4 +247,24 @@ app.get('/nekretnina/:id',async(req,res) =>{
         return res.status(500).json({ greska: 'Interna greška servera' });
     }
 });
+
+app.get('/nekretnine/upit/:id',async(req,res)=>{
+    const nekretninaId = req.params.id;
+    try{
+        const upiti = await db.upit.findAll({
+            where: {
+              nekretninaId: nekretninaId
+            },
+            include: [{
+              model: db.korisnik,
+              attributes: ['username']
+            }]
+          });
+          res.status(200).json(upiti);
+    }catch(err){
+        console.error('Greška prilikom dohvaćanja upita:', err);
+        return res.status(500).json({ greska: 'Interna greška servera' });
+    }
+});
+
 app.listen(3000)

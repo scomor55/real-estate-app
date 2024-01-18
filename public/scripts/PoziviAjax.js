@@ -39,7 +39,7 @@ const PoziviAjax = (() => {
     }
 
     // dodaje novi upit za trenutno loginovanog korisnika
-    function impl_postUpit(nekretnina_id, tekst_upita, fnCallback) {
+    function impl_postUpit(id, tekst_upita, fnCallback) {
         const ajax = new XMLHttpRequest();
         ajax.onreadystatechange = function(){
             if(ajax.readyState == 4 && ajax.status == 200){
@@ -51,7 +51,7 @@ const PoziviAjax = (() => {
         };
         ajax.open('POST','/upit',true);
         ajax.setRequestHeader('Content-Type','application/json');
-        ajax.send(JSON.stringify({nekretnina_id,tekst_upita}));
+        ajax.send(JSON.stringify({id,tekst_upita}));
     }
 
     function impl_getNekretnine(fnCallback) {
@@ -102,7 +102,23 @@ const PoziviAjax = (() => {
         const url = `nekretnina/${nekretnina_id}`;
         ajax.onreadystatechange = function(){
             if(ajax.readyState == 4 && ajax.status == 200){
-                console.log("vraca iz ajaxa",ajax.responseText);
+            //    console.log("vraca iz ajaxa",ajax.responseText);
+                fnCallback(null, JSON.parse(ajax.responseText));
+            }
+            if(ajax.readyState == 4 && ajax.status == 404) {
+                fnCallback(ajax.responseText, null);
+            }
+        };
+        ajax.open('GET',url,true);
+        ajax.send();
+    }
+
+    function impl_getUpitById(nekretnina_id, fnCallback) {
+        const ajax = new XMLHttpRequest();
+        const url = `nekretnine/upit/${nekretnina_id}`;
+        ajax.onreadystatechange = function(){
+            if(ajax.readyState == 4 && ajax.status == 200){
+             //   console.log("vraca iz ajaxa",ajax.responseText);
                 fnCallback(null, JSON.parse(ajax.responseText));
             }
             if(ajax.readyState == 4 && ajax.status == 404) {
@@ -120,6 +136,7 @@ const PoziviAjax = (() => {
         putKorisnik: impl_putKorisnik,
         postUpit: impl_postUpit,
         getNekretnine: impl_getNekretnine,
-        getNekretnina: impl_getNekretninaById
+        getNekretnina: impl_getNekretninaById,
+        getUpiti:impl_getUpitById,
     };
 })();

@@ -14,7 +14,7 @@ function SpojiMeni(divReferenca){
     element2.appendChild(strongElement2);
     lista.appendChild(element2);
 
-    let element3 = document.createElement("li");
+    /*let element3 = document.createElement("li");
     var strongElement3 = document.createElement('strong');
     var linkElement3 = document.createElement('a');
 
@@ -23,7 +23,7 @@ function SpojiMeni(divReferenca){
     linkElement3.setAttribute('target','_top');
     strongElement3.appendChild(linkElement3);
     element3.appendChild(strongElement3);
-    lista.appendChild(element3);
+    lista.appendChild(element3);*/
 
     let element4 = document.createElement("li");
     var strongElement4 = document.createElement('strong');
