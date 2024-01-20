@@ -9,7 +9,7 @@ iframe {
     width: 100%;
 }
 
-#osnovno, #detalji, #upiti {
+#osnovno, #detalji, #upiti, #input {
     margin: 0px 50px;
 }
 
@@ -43,6 +43,18 @@ td.gore .desno, td.dolje .desno{
     display: flex;
     justify-content: space-between;
     margin: 5px 0;
+}
+
+#inputUpit {
+    height: 50px;
+    width: 500px;
+    vertical-align: top;
+}
+
+#posaljiUpit {
+    margin: 10px 0px 0px 25px;
+    height: 30px;
+    width: 90px;
 }
 
 .upit {

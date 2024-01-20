@@ -11,7 +11,7 @@ document.getElementById('datumObjave').innerText = nekretnina.datum_objave;
 document.getElementById('opis').innerText = nekretnina.opis;
 
 const upitiDiv = document.getElementById('upiti');
-
+const inputDiv = document.getElementById('input');
 PoziviAjax.getKorisnik(function(err,data){
     if(err){
       
@@ -31,7 +31,8 @@ PoziviAjax.getKorisnik(function(err,data){
         divContainer.appendChild(inputUpit);
         divContainer.appendChild(posaljiUpit);
 
-        upitiDiv.appendChild(divContainer);
+        inputDiv.innerHTML = ''; 
+        inputDiv.appendChild(divContainer);
         posaljiUpit.addEventListener('click', () => {
             const tekstUpita = inputUpit.value;
             if (tekstUpita.trim() !== '') {
@@ -45,10 +46,11 @@ PoziviAjax.getKorisnik(function(err,data){
 
 
 
-PoziviAjax.getUpiti(nekretnina.id,function(err,data){
+/*PoziviAjax.getUpiti(nekretnina.id,function(err,data){
     if (err) {
         console.error(err);
     } else {
+      // upitiDiv.innerHTML = '';
 
         data.forEach(upit => {
             const upitDivElem = document.createElement('div');
@@ -69,10 +71,10 @@ PoziviAjax.getUpiti(nekretnina.id,function(err,data){
             upitiDiv.appendChild(upitDivElem);
         });
     }
-});
+});*/
 
 
-function PosaljiUpit(nekretnina_id, tekst_upita) {
+function PosaljiUpit(nekretnina_id, tekst_upita){
     PoziviAjax.postUpit(nekretnina_id, tekst_upita, function (err, data) {
         if (err) {
             console.error(err);
@@ -82,3 +84,37 @@ function PosaljiUpit(nekretnina_id, tekst_upita) {
         }
     });
 } 
+
+async function azurirajUpite(){
+    PoziviAjax.getUpiti(nekretnina.id,function(err,data){
+        if (err) {
+            console.error(err);
+        } else {
+            upitiDiv.innerHTML = '';
+    
+            data.forEach(upit => {
+                const upitDivElem = document.createElement('div');
+                upitDivElem.classList.add('upit');
+    
+                const usernameElem = document.createElement('p');
+                const usernameStrongElem = document.createElement('strong');
+                
+                usernameStrongElem.textContent = upit.korisnik.username;
+                usernameElem.appendChild(usernameStrongElem);
+    
+                const porukaElem = document.createElement('p');
+                porukaElem.textContent = upit.tekst_upita;
+    
+                upitDivElem.appendChild(usernameElem);
+                upitDivElem.appendChild(porukaElem);
+    
+                upitiDiv.appendChild(upitDivElem);
+            });
+        }
+    });
+}
+azurirajUpite();
+
+setInterval(async()=> {
+    azurirajUpite();
+},500);
