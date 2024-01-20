@@ -18,7 +18,7 @@ function inicijalizacija(){
         godina_izgradnje: 2019,
         datum_objave: "01.10.2023.",
         opis: "Sociis natoque penatibus.",
-        slika: "../slike/stan.jpg"
+        slika: "https://www.apartments.com/blog/sites/default/files/styles/x_large_hq/public/image/2023-06/ParkLine-apartment-in-Miami-FL.jpg?itok=kQmw64UU"
     },
     {
         tip_nekretnine: "Poslovni prostor",
@@ -32,7 +32,7 @@ function inicijalizacija(){
         godina_izgradnje: 2005,
         datum_objave: "20.08.2023.",
         opis: "Magnis dis parturient montes.",
-        slika: "../slike/poslovni.png",
+        slika: "https://www.orion132.com/blog/wp-content/uploads/2022/09/shutterstock_1700575657.jpg"
     },
     {
         tip_nekretnine: "Stan",
@@ -46,7 +46,7 @@ function inicijalizacija(){
         godina_izgradnje: 2019,
         datum_objave: "01.10.2023.",
         opis: "Sociis natoque penatibus.",
-        slika: "../slike/stan.jpg", 
+        slika: "https://www.apartments.com/blog/sites/default/files/styles/x_large_hq/public/image/2023-06/ParkLine-apartment-in-Miami-FL.jpg?itok=kQmw64UU"
     },
     {
         tip_nekretnine: "Stan",
@@ -60,7 +60,7 @@ function inicijalizacija(){
         godina_izgradnje: 2019,
         datum_objave: "01.10.2023.",
         opis: "Sociis natoque penatibus.",
-        slika: "../slike/stan.jpg"
+        slika: "https://www.apartments.com/blog/sites/default/files/styles/x_large_hq/public/image/2023-06/ParkLine-apartment-in-Miami-FL.jpg?itok=kQmw64UU"
     },
     {
         tip_nekretnine: "Stan",
@@ -74,7 +74,7 @@ function inicijalizacija(){
         godina_izgradnje: 2019,
         datum_objave: "01.10.2023.",
         opis: "Sociis natoque penatibus.",
-        slika: "../slike/stan.jpg"
+        slika: "https://www.apartments.com/blog/sites/default/files/styles/x_large_hq/public/image/2023-06/ParkLine-apartment-in-Miami-FL.jpg?itok=kQmw64UU"
     },
     {
         tip_nekretnine: "Stan",
@@ -88,7 +88,7 @@ function inicijalizacija(){
         godina_izgradnje: 2019,
         datum_objave: "01.10.2023.",
         opis: "Sociis natoque penatibus.",
-        slika: "../slike/stan.jpg",
+        slika: "https://www.apartments.com/blog/sites/default/files/styles/x_large_hq/public/image/2023-06/ParkLine-apartment-in-Miami-FL.jpg?itok=kQmw64UU"
     },
     {
         tip_nekretnine: "Poslovni prostor",
@@ -102,8 +102,8 @@ function inicijalizacija(){
     godina_izgradnje: 2005,
     datum_objave: "20.08.2023.",
     opis: "Magnis dis parturient montes.",
-    slika: "../slike/poslovni.png"
-    },
+    slika: "https://www.orion132.com/blog/wp-content/uploads/2022/09/shutterstock_1700575657.jpg"
+},
     {
         tip_nekretnine: "Poslovni prostor",
         naziv: "Mali poslovni prostor",
@@ -116,7 +116,7 @@ function inicijalizacija(){
         godina_izgradnje: 2005,
         datum_objave: "20.08.2023.",
         opis: "Magnis dis parturient montes.",
-        slika: "../slike/poslovni.png"
+        slika: "https://www.orion132.com/blog/wp-content/uploads/2022/09/shutterstock_1700575657.jpg"
     },
     {
         tip_nekretnine: "Poslovni prostor",
@@ -130,7 +130,7 @@ function inicijalizacija(){
         godina_izgradnje: 2005,
         datum_objave: "20.08.2023.",
         opis: "Magnis dis parturient montes.",
-        slika: "../slike/poslovni.png"
+        slika: "https://www.orion132.com/blog/wp-content/uploads/2022/09/shutterstock_1700575657.jpg"
     },
     {
         tip_nekretnine: "Poslovni prostor",
@@ -144,7 +144,7 @@ function inicijalizacija(){
         godina_izgradnje: 2005,
         datum_objave: "20.08.2023.",
         opis: "Magnis dis parturient montes.",
-        slika: "../slike/poslovni.png"
+        slika: "https://www.orion132.com/blog/wp-content/uploads/2022/09/shutterstock_1700575657.jpg"
     },
     {
         tip_nekretnine: "Kuća",
@@ -158,7 +158,7 @@ function inicijalizacija(){
         godina_izgradnje: 2005,
         datum_objave: "20.08.2023.",
         opis: "Magnis dis parturient montes.",
-        slika: "../slike/kuca.jpg"
+        slika: "https://www.redfin.com/blog/wp-content/uploads/2021/08/220-Maryland-Ave-21122-1.jpg"
     },
     {
         tip_nekretnine: "Kuća",
@@ -172,7 +172,7 @@ function inicijalizacija(){
         godina_izgradnje: 2005,
         datum_objave: "20.08.2023.",
         opis: "Magnis dis parturient montes.",
-        slika: "../slike/kuca.jpg"
+        slika: "https://www.redfin.com/blog/wp-content/uploads/2021/08/220-Maryland-Ave-21122-1.jpg"
     },
     {
         tip_nekretnine: "Kuća",
@@ -186,7 +186,7 @@ function inicijalizacija(){
         godina_izgradnje: 2005,
         datum_objave: "20.08.2023.",
         opis: "Magnis dis parturient montes.",
-        slika: "../slike/kuca.jpg"
+        slika: "https://www.redfin.com/blog/wp-content/uploads/2021/08/220-Maryland-Ave-21122-1.jpg"
     },
     {
         tip_nekretnine: "Kuća",
@@ -200,7 +200,7 @@ function inicijalizacija(){
         godina_izgradnje: 2005,
         datum_objave: "20.08.2023.",
         opis: "Magnis dis parturient montes.",
-        slika: "../slike/kuca.jpg"
+        slika: "https://www.redfin.com/blog/wp-content/uploads/2021/08/220-Maryland-Ave-21122-1.jpg"
     },
     {
         tip_nekretnine: "Kuća",
@@ -214,7 +214,7 @@ function inicijalizacija(){
         godina_izgradnje: 2005,
         datum_objave: "20.08.2023.",
         opis: "Magnis dis parturient montes.",
-        slika: "../slike/kuca.jpg"
+        slika: "https://www.redfin.com/blog/wp-content/uploads/2021/08/220-Maryland-Ave-21122-1.jpg"
     }
 ]).then(() => {
     console.log('Podaci uspješno uneseni!');

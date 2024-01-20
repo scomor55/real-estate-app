@@ -10,7 +10,7 @@ document.getElementById('lokacija').innerText = nekretnina.lokacija;
 document.getElementById('datumObjave').innerText = nekretnina.datum_objave;
 document.getElementById('opis').innerText = nekretnina.opis;
 
-const upitiDiv = document.getElementById('upiti');
+const upitiDiv = document.getElementById('podaci');
 const inputDiv = document.getElementById('input');
 PoziviAjax.getKorisnik(function(err,data){
     if(err){
