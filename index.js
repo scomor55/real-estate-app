@@ -228,7 +228,6 @@ app.post('/marketing/nekretnine',async(req, res) => {
         const marketingPodaci = await db.nekretnina.findAll({ raw: true });
         return res.status(200).json({ nizNekretnina: marketingPodaci });
     } catch (error) {
-        console.error('Greška prilikom osvježavanja podataka:', error);
         return res.status(500).json({ greska: 'Greška prilikom osvježavanja podataka.' });
     }
 });
@@ -262,7 +261,6 @@ app.get('/nekretnine/upit/:id',async(req,res)=>{
           });
           res.status(200).json(upiti);
     }catch(err){
-        console.error('Greška prilikom dohvaćanja upita:', err);
         return res.status(500).json({ greska: 'Interna greška servera' });
     }
 });

@@ -50,6 +50,9 @@ td.gore .desno, td.dolje .desno{
     width: 500px;
     vertical-align: top;
 }
+#input {
+    margin-bottom: 40px;
+}
 
 #posaljiUpit {
     margin: 10px 0px 0px 25px;
