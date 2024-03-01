@@ -4,7 +4,7 @@ const session = require('express-session');
 const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcrypt');
-const db = require('./public/scripts/db.js')
+const db = require('./db.js')
 
 const app = express();
 app.use(express.static("public"));

@@ -6,9 +6,9 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 
-db.nekretnina =  require(__dirname+'/nekretnina.js')(sequelize,Sequelize.DataTypes)
-db.korisnik =  require(__dirname+'/korisnik.js')(sequelize,Sequelize.DataTypes)
-db.upit =  require(__dirname+'/upit.js')(sequelize,Sequelize.DataTypes)
+db.nekretnina =  require(__dirname+'/public/scripts/nekretnina.js')(sequelize,Sequelize.DataTypes)
+db.korisnik =  require(__dirname+'/public/scripts/korisnik.js')(sequelize,Sequelize.DataTypes)
+db.upit =  require(__dirname+'/public/scripts/upit.js')(sequelize,Sequelize.DataTypes)
 
 
 db.nekretnina.hasMany(db.upit, {as: 'upiti'});

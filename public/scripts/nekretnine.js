@@ -270,24 +270,7 @@ let posljednjaKliknutaNekretnina = null;
  document.addEventListener('click',function(event){
     if(event.target.tagName === 'BUTTON' && event.target.textContent === 'Detalji'){
         const nekretninaId = parseInt(event.target.classList[0]);
-
-        if (posljednjaKliknutaNekretnina) {
-            posljednjaKliknutaNekretnina.style.width = '';
-        }
         
-        const nekretninaDiv = event.target.closest('.nekretnina');
-        if (nekretninaDiv) {
-            const podaciDiv = nekretninaDiv.querySelector('.podaci');
-
-            const detaljiButton = podaciDiv.querySelector('button');
-
-            if (detaljiButton) {
-                nekretninaDiv.style.width = '500px';
-                posljednjaKliknutaNekretnina = nekretninaDiv;
-
-                podaciDiv.style.padding = '30px';    
-            }
-        }
         handleDetaljiClick(nekretninaId);
     }
  });  
