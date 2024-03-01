@@ -8,125 +8,57 @@ const PoziviAjax = (() => {
     // callback-a, a data je tada null
 
     // vraća korisnika koji je trenutno prijavljen na sistem
+    function sendRequest(method, url, data, fnCallback) {
+        const ajax = new XMLHttpRequest();
+        ajax.onreadystatechange = function () {
+
+            if (ajax.readyState == 4) {
+                if (ajax.status == 200) {
+                    fnCallback(null, JSON.parse(ajax.responseText));
+                } else if (ajax.status == 404) {
+                    fnCallback(ajax.responseText, null);
+                }
+            }
+        };
+        ajax.open(method, url, true);
+
+        if (method !== 'GET') {
+            ajax.setRequestHeader('Content-Type', 'application/json');
+        }
+
+        ajax.send(JSON.stringify(data));
+    }
+
     function impl_getKorisnik(fnCallback) {
-        const ajax = new XMLHttpRequest();
-        ajax.onreadystatechange = function(){
-            if(ajax.readyState == 4 && ajax.status == 200){
-                fnCallback(null, JSON.parse(ajax.responseText));
-            }
-            if(ajax.readyState == 4 && ajax.status == 404) {
-                fnCallback(ajax.responseText, null);
-            }
-        };
-        ajax.open('GET','/korisnik',true);
-        ajax.send();
+        sendRequest('GET', '/korisnik', null, fnCallback);
     }
 
-    // ažurira podatke loginovanog korisnika
     function impl_putKorisnik(noviPodaci, fnCallback) {
-        const ajax = new XMLHttpRequest();
-        ajax.onreadystatechange = function(){
-            if(ajax.readyState == 4 && ajax.status == 200){
-                fnCallback(null, JSON.parse(ajax.responseText));
-            }
-            if(ajax.readyState == 4 && ajax.status == 404) {
-                fnCallback(ajax.responseText, null);
-            }
-        };
-        ajax.open('PUT','/korisnik',true);
-        ajax.setRequestHeader('Content-Type','application/json');
-        ajax.send(JSON.stringify(noviPodaci));
+        sendRequest('PUT', '/korisnik', noviPodaci, fnCallback);
     }
 
-    // dodaje novi upit za trenutno loginovanog korisnika
     function impl_postUpit(id, tekst_upita, fnCallback) {
-        const ajax = new XMLHttpRequest();
-        ajax.onreadystatechange = function(){
-            if(ajax.readyState == 4 && ajax.status == 200){
-                fnCallback(null, JSON.parse(ajax.responseText));
-            }
-            if(ajax.readyState == 4 && ajax.status == 404) {
-                fnCallback(ajax.responseText, null);
-            }
-        };
-        ajax.open('POST','/upit',true);
-        ajax.setRequestHeader('Content-Type','application/json');
-        ajax.send(JSON.stringify({id,tekst_upita}));
+        sendRequest('POST', '/upit', { id, tekst_upita }, fnCallback);
     }
 
     function impl_getNekretnine(fnCallback) {
-        const ajax = new XMLHttpRequest();
-        ajax.onreadystatechange = function(){
-            if(ajax.readyState == 4 && ajax.status == 200){
-                fnCallback(null, JSON.parse(ajax.responseText));
-            }
-            if(ajax.readyState == 4 && ajax.status == 404) {
-                fnCallback(ajax.responseText, null);
-            }
-        };
-        ajax.open('GET','/nekretnine',true);
-        ajax.send();
+        sendRequest('GET', '/nekretnine', null, fnCallback);
     }
 
     function impl_postLogin(username, password, fnCallback) {
-        const ajax = new XMLHttpRequest();
-        ajax.onreadystatechange = function(){
-            if(ajax.readyState == 4 && ajax.status == 200){
-                fnCallback(null, JSON.parse(ajax.responseText));
-            }
-            if(ajax.readyState == 4 && ajax.status == 404) {
-                fnCallback(ajax.responseText, null);
-            }
-        };
-        ajax.open('POST','/login',true);
-        ajax.setRequestHeader('Content-Type','application/json');
-        ajax.send(JSON.stringify({username,password}));
+        sendRequest('POST', '/login', { username, password }, fnCallback);
     }
 
     function impl_postLogout(fnCallback) {
-        const ajax = new XMLHttpRequest();
-        ajax.onreadystatechange = function(){
-            if(ajax.readyState == 4 && ajax.status == 200){
-                fnCallback(null, JSON.parse(ajax.responseText));
-            }
-            if(ajax.readyState == 4 && ajax.status == 404) {
-                fnCallback(ajax.responseText, null);
-            }
-        };
-        ajax.open('POST','/logout',true);
-        ajax.send();
+        sendRequest('POST', '/logout', null, fnCallback);
     }
 
     function impl_getNekretninaById(nekretnina_id, fnCallback) {
-        const ajax = new XMLHttpRequest();
-        const url = `nekretnina/${nekretnina_id}`;
-        ajax.onreadystatechange = function(){
-            if(ajax.readyState == 4 && ajax.status == 200){
-            //    console.log("vraca iz ajaxa",ajax.responseText);
-                fnCallback(null, JSON.parse(ajax.responseText));
-            }
-            if(ajax.readyState == 4 && ajax.status == 404) {
-                fnCallback(ajax.responseText, null);
-            }
-        };
-        ajax.open('GET',url,true);
-        ajax.send();
+        sendRequest('GET', `nekretnina/${nekretnina_id}`, null, fnCallback);
     }
 
     function impl_getUpitById(nekretnina_id, fnCallback) {
-        const ajax = new XMLHttpRequest();
-        const url = `nekretnine/upit/${nekretnina_id}`;
-        ajax.onreadystatechange = function(){
-            if(ajax.readyState == 4 && ajax.status == 200){
-             //   console.log("vraca iz ajaxa",ajax.responseText);
-                fnCallback(null, JSON.parse(ajax.responseText));
-            }
-            if(ajax.readyState == 4 && ajax.status == 404) {
-                fnCallback(ajax.responseText, null);
-            }
-        };
-        ajax.open('GET',url,true);
-        ajax.send();
+        sendRequest('GET', `nekretnine/upit/${nekretnina_id}`, null, fnCallback);
     }
 
     return {
