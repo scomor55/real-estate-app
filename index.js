@@ -67,7 +67,7 @@ app.post('/login',async function(req,res){
     }
         try{
             const korisnik =await db.korisnik.findOne({ where: { username: req.session.username } });
-
+            
             if(korisnik){
                 const {id , ime , prezime , username , password , slika} = korisnik;
                 return res.status(200).json({id,ime,prezime,username,password,slika});
