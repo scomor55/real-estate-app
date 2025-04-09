@@ -1,0 +1,68 @@
+body {
+    background-color: #fdf1d3;
+    margin: 0;
+    padding: 0;
+}
+
+iframe {
+    border: 0;
+    width: 100%;
+}
+
+#osnovno, #detalji, #upiti {
+    margin: 0px 50px;
+}
+
+p {
+    padding: 10px 0px;
+}
+
+img {
+    width: 100%;
+    height: 300px;
+}
+
+table {
+    width: 100%;
+}
+
+td {
+    padding: 15px 0px;
+    text-align: left;
+}
+
+td.gore .lijevo, td.dolje .lijevo{
+    text-align: left;
+}
+
+td.gore .desno, td.dolje .desno{
+    text-align: right;
+}
+
+.detalj {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+#inputUpit {
+    height: 50px;
+    width: 500px;
+    vertical-align: top;
+}
+#input {
+    margin-bottom: 40px;
+}
+
+#posaljiUpit {
+    margin: 10px 0px 0px 25px;
+    height: 30px;
+    width: 90px;
+}
+
+.upit {
+    background-color: white;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 20px 0;
+}

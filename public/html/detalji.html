@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ba">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <link href="../css/detalji.css" rel="stylesheet">
+    <title>Detalji</title>
+</head>
+<body>
+    <iframe src="meni.html" height="50"></iframe>
+
+    <div id="osnovno">
+        <h3>OSNOVNO</h3>
+        <img src="https://www.apartments.com/blog/sites/default/files/styles/x_large_hq/public/image/2023-06/ParkLine-apartment-in-Miami-FL.jpg?itok=kQmw64UU" alt="slika">
+        <p><strong>Naziv</strong>: <span id="naziv"></span></p>
+        <p><strong>Kvadratura</strong>: <span id="kvadratura"></span></p>
+        <p class="cijena"><strong>Cijena</strong>: <span id="cijena"></span></p>
+    </div>
+    <div id="detalji">
+        <h3>DETALJI</h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="lijevo"><strong> Tip grijanja</strong>: <span id="tipGrijanja"></span></div>
+                </td>
+                <td>
+                    <div class="desno"><strong>Godina izgradnje</strong>: <span id="godinaIzgradnje"></span></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="lijevo"><strong>Lokacija</strong>: <span id="lokacija"></span></div>
+                </td>
+                <td>
+                    <div class="desno"><strong>Datum objave oglasa</strong>: <span id="datumObjave"></span></div>
+                </td>
+            </tr>
+        </table>
+        <div class="opis">
+            <p><strong>Opis</strong>: <span id="opis"></span></p>
+        </div>
+    </div>
+    <div id="upiti">
+        <h3>UPITI</h3>
+        <div id="podaci"></div> 
+        <div id="input"></div>
+    </div>
+    <script src="../scripts/PoziviAjax.js"></script>
+    <script src="../scripts/spojiDetalje.js"></script>
+    <script src="../scripts/spojiUpite.js"></script>
+</body>
+</html>
