@@ -1,7 +1,6 @@
 services:
   nodejs-app:
-    build: .
-    image: nodejs-app:v1.0
+    image: scomor/arm-zadaca:nodejs-app
     container_name: nodejs-app
     ports:
       - "3000:3000"
